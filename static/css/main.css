@@ -1,0 +1,168 @@
+/* navbar styles */
+.nav_li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.navbar {
+    list-style-type: none;
+    margin-top: 0;
+    overflow: hidden;
+    background-color: #05336e;
+    border: 2px solid #05336e;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+a {
+
+}
+
+.nav_li a:hover {
+    background-color: lightblue;
+}
+.right {
+    float: right;
+}
+/* end navbar */
+
+/* background color */
+body {
+    background-color: #bfbcbb;
+}
+
+
+.banner {
+    /* The image used */
+    background-image:
+    /* Set a linear gradient */
+    linear-gradient(to top right, rgba(228,221,221, 0.50) 10%, rgba(0,0,0, 0.80 ) 60%),
+    url('../images/banner.jpg');
+    background-attachment: fixed;
+    text-decoration-color: lightgrey;
+  }
+
+.banner-text {
+    color: lightgrey;
+    text-align: center;
+}
+
+/*.welcome_message {*/
+
+/*    text-align: center;*/
+/*    font-family: Garamond, serif;*/
+/*    color: #05336e;*/
+/*    background-color: #9fa2a6;*/
+/*    width: 50%;*/
+/*    margin-top: 10px;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    opacity: 85%;*/
+/*    border: 2px solid #9fa2a6;*/
+/*    border-radius: 12px;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.review-card {*/
+/*    box-shadow: 0 0 3px 0;*/
+/*    width: 100%;*/
+/*    padding: 20px;*/
+/*    background-position: right 35% bottom 45%;*/
+/*    box-sizing: border-box;*/
+/*    border-radius: 15px;*/
+/*    height: 300px;*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 70px;*/
+/*    margin-top: 20px;*/
+/*    background-color: #9fa2a6;*/
+/*    opacity: 85%;*/
+/*    flex: content;*/
+/*}*/
+
+/*.container {*/
+/*    position: relative;*/
+/*}*/
+
+/*.card-paragraph {*/
+/*    position: absolute;*/
+/*    top: 90%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*}*/
+
+/*h3 {*/
+/*    text-align: center;*/
+/*    color: white;*/
+/*}*/
+
+/*.container:hover {*/
+/*    box-shadow: 0 0 30px 0;*/
+/*}*/
+
+/*.list {*/
+/*    margin-left: 150px;*/
+/*    margin-right: auto;*/
+/*}*/
+
+/*.image {*/
+/*    display: block;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    border: 2px;*/
+/*    border-radius: 12px;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*table {*/
+/*    width: 50%;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
+
+/*th, td {*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    border: black;*/
+/*    padding: 16px 20px;*/
+/*    border-radius: 4px;*/
+/*    background-color: #666666;*/
+/*}*/
+
+/*input {*/
+/*    padding: 10px;*/
+/*    border: 0;*/
+/*    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);*/
+/*    border-radius: 10px;*/
+/*    width: 20%;*/
+/*    margin: 8px 0;*/
+/*    display: list-item;*/
+
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*.form_div {*/
+/*    margin: auto;*/
+
+/*}*/
+
+/*button {*/
+
+/*    !* remove default behavior *!*/
+/*    appearance: none;*/
+/*    -webkit-appearance: none;*/
+
+/*    !* usual styles *!*/
+/*    padding: 10px;*/
+/*    border: none;*/
+/*    background-color: #3F51B5;*/
+/*    color: #fff;*/
+/*    font-weight: 600;*/
+/*    border-radius: 5px;*/
+/*    width: 10%;*/
+
+/*}*/

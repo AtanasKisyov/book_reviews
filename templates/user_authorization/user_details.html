@@ -1,0 +1,12 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div>
+        <img src="{{ profile.picture.url }}" alt="">
+        <p>{{ object.first_name }}</p>
+        <p>{{ object.last_name }}</p>
+        <p>{{ object.user.email }}</p>
+        <a href="{% url 'edit_user' object.user.id %}">Edit</a>
+        <a href="{% url 'delete_user' object.user.id %}">Delete</a>
+    </div>
+{% endblock %}

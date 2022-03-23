@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div>
+    <h3 class="welcome_message">All Areas Catalog</h3>
+        <ul>
+            {% for element in areas.all %}
+                <div class="review-card container">
+                    <img class="image" src="{{ element.picture.url }}" alt="" width="200" height="200">
+                    <button href="{% url 'details_area' %}" class="card-paragraph">View {{ element.name }}</button>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
