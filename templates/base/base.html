@@ -14,7 +14,7 @@
 <nav>
     <ul class="navbar">
         <li class="nav_li"><a href="{% url 'home' %}">Home</a></li>
-        <li class="nav_li"><a href="#">All Reviews</a></li>
+        <li class="nav_li"><a href="{% url 'all_reviews' %}">All Reviews</a></li>
         {% if request.user.is_authenticated %}
             <li class="nav_li"><a href="#">My Reviews</a></li>
             <li class="nav_li"><a href="{% url 'create_review' %}">Add Review</a></li>

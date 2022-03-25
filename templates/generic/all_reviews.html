@@ -2,14 +2,35 @@
 
 {% block content %}
     <div>
-    <h3 class="welcome_message">All Areas Catalog</h3>
-        <ul>
-            {% for element in areas.all %}
+        <h3 class="welcome_message">Reviews</h3>
+        <ul class="list">
+            {% for element in object_list.all %}
                 <div class="review-card container">
-                    <img class="image" src="{{ element.picture.url }}" alt="" width="200" height="200">
-                    <button href="{% url 'details_area' %}" class="card-paragraph">View {{ element.name }}</button>
+                    <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
+                    <a href="{% url 'details_review' element.id %}"
+                       class="card-paragraph">Details {{ element.title }}</a>
+                    <a href="{% url 'edit_review' element.id %}" class="card-paragraph">Edit {{ element.name }}</a>
+                    <a href="{% url 'delete_review' element.id %}" class="card-paragraph">Delete {{ element.name }}</a>
                 </div>
             {% endfor %}
         </ul>
     </div>
+    <div>
+    <span>
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span >
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
 {% endblock %}

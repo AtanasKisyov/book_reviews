@@ -16,14 +16,9 @@ class HomeView(generic_views.ListView):
 
 
 class AllReviewsView(generic_views.ListView):
+    paginate_by = 5
     model = Book
     template_name = 'generic/all_reviews.html'
-    paginate_by = 5
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['recently_added'] = Book.objects.all()
-        return context
 
 
 class CreateReviewView(generic_views.CreateView):
