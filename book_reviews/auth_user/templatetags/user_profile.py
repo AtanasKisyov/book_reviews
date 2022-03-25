@@ -17,3 +17,11 @@ def user_profile(context):
             'id': profile.user_id,
         }
     return None
+
+
+@register.simple_tag(takes_context=True)
+def page_name(context):
+    pages = {
+        'Home'
+    }
+

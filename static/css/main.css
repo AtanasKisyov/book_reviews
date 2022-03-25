@@ -13,18 +13,19 @@
     list-style-type: none;
     margin-top: 0;
     overflow: hidden;
-    background-color: #05336e;
-    border: 2px solid #05336e;
+    background-color: black;
+    border: 2px solid black;
     border-radius: 12px;
     padding: 5px;
 }
 
 a {
-
+    color: black;
+    text-decoration: initial;
 }
 
-.nav_li a:hover {
-    background-color: lightblue;
+a:hover {
+    text-decoration: underline;
 }
 .right {
     float: right;

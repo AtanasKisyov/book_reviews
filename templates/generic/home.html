@@ -1,31 +1,16 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-    <div class="banner">
-        {% if not request.user.is_authenticated %}
-            <h2 class="banner-text">Welcome to Book Reviews</h2>
-            <p class="banner-text">You can post reviews on your favourite (and not so favourite) books.</p>
-            <p class="banner-text"><a href="{% url 'login' %}">Login</a> or if you don't have an account, <a
-                    href="{% url 'register' %}">register!</a>
-            </p>
-        {% else %}
-            <h2 class="banner-text">Home</h2>
-            <p>
-                <a class="banner-text" href="#">#</a>
-                <a class="banner-text" href="#">#</a>
-            </p>
-        {% endif %}
-    </div>
+
     <div>
         <h3 class="welcome_message">Recently Added</h3>
         <ul class="list">
             {% for element in recently_added.all %}
                 <div class="review-card container">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
-                    <a href="{% url 'details_review' element.id %}"
-                       class="card-paragraph">Details {{ element.title }}</a>
-                    <a href="{% url 'edit_review' element.id %}" class="card-paragraph">Edit {{ element.name }}</a>
-                    <a href="{% url 'delete_review' element.id %}" class="card-paragraph">Delete {{ element.name }}</a>
+                    <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
+                    <a href="{% url 'edit_review' element.id %}" class="card-paragraph">Edit</a>
+                    <a href="{% url 'delete_review' element.id %}" class="card-paragraph">Delete</a>
                 </div>
             {% endfor %}
         </ul>

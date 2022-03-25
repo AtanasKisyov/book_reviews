@@ -1,5 +1,4 @@
 from django.contrib.auth import forms as auth_forms, get_user_model
-from django.forms import forms
 
 from book_reviews.auth_user.models import Profile, AuthUser
 

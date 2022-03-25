@@ -40,6 +40,7 @@ class DetailUserView(generic_views.DetailView):
         user = self.object.user
         profile = Profile.objects.get(pk=user.id)
         context['profile'] = profile
+        context['template_name'] = 'Profile Details'
         return context
 
 
@@ -48,6 +49,11 @@ class EditUserView(generic_views.UpdateView):
     template_name = 'user_authorization/login.html'  # change this!
     fields = ('picture', 'first_name', 'last_name')
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['template_name'] = 'Edit Profile'
+        return context
 
 
 class DeleteUserView(generic_views.DeleteView):
