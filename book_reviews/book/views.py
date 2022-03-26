@@ -58,6 +58,10 @@ class DetailsReviewView(generic_views.DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['template_name'] = 'Details'
+        context['is_owner'] = False
+        if self.request.user.is_authenticated:
+            profile = Profile.objects.get(pk=self.request.user.id)
+            context['is_owner'] = context['object'].reviewed_by == profile
         return context
 
 

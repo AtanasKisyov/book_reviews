@@ -2,3 +2,9 @@ db.sqlite3
 TODO.py
 .pyc
 media
+book_reviews/__pycache__/
+book_reviews/auth_user/migrations/__pycache__/
+book_reviews/auth_user/templatetags/__pycache__/
+book_reviews/book/__pycache__/
+book_reviews/book/migrations/__pycache__/
+book_reviews/auth_user/__pycache__/

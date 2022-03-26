@@ -8,8 +8,6 @@
                 <div class="review-card container">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
                     <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
-                    <a href="{% url 'edit_review' element.id %}" class="card-paragraph">Edit</a>
-                    <a href="{% url 'delete_review' element.id %}" class="card-paragraph">Delete</a>
                 </div>
             {% endfor %}
         </ul>

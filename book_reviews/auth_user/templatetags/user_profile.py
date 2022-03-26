@@ -20,8 +20,5 @@ def user_profile(context):
 
 
 @register.simple_tag(takes_context=True)
-def page_name(context):
-    pages = {
-        'Home'
-    }
-
+def is_owner(context):
+    pass

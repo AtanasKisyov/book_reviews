@@ -6,6 +6,10 @@
         <div class="review-card container">
             <img class="image" src="{{ object.cover.url }}" alt="" width="200" height="200">
             <p>{{ object.review }}</p>
+            {% if is_owner %}
+                <a href="{% url 'edit_review' object.id %}">Edit</a>
+                <a href="{% url 'delete_review' object.id %}">Delete</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
