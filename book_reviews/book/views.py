@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
+from book_reviews.book.forms import CreateBookReviewForm, EditBookReviewForm
 from book_reviews.book.models import Book
 
 
@@ -29,7 +30,7 @@ class AllReviewsView(generic_views.ListView):
 
 class CreateReviewView(generic_views.CreateView):
     model = Book
-    fields = ('title', 'review', 'cover', 'category')
+    form_class = CreateBookReviewForm
     template_name = 'review/review_add.html'
     success_url = reverse_lazy('home')
 
@@ -62,8 +63,8 @@ class DetailsReviewView(generic_views.DetailView):
 
 class EditReviewView(generic_views.UpdateView):
     model = Book
+    form_class = EditBookReviewForm
     template_name = 'review/review_edit.html'
-    fields = ('title', 'review', 'cover', 'category')
     success_url = reverse_lazy('home')  # Change it to review details
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -81,4 +82,3 @@ class DeleteReviewView(generic_views.DeleteView):
         context = super().get_context_data(**kwargs)
         context['template_name'] = 'Delete Review'
         return context
-
