@@ -54,9 +54,3 @@ class Comment(models.Model):
         Book,
         on_delete=models.CASCADE
     )
-
-
-"""
-class Reviews(ManyToOne Relation with Book
-"""
-

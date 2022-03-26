@@ -2,7 +2,7 @@
 
 {% block content %}
     <div>
-        <h3 class="welcome_message">Reviews</h3>
+        <h3>Reviews</h3>
         <ul class="list">
             {% for element in object_list.all %}
                 <div class="review-card container">
@@ -12,14 +12,13 @@
             {% endfor %}
         </ul>
     </div>
-    <div>
     <span>
         {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
 
-        <span >
+        <span>
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
 
@@ -28,6 +27,4 @@
             <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
         {% endif %}
     </span>
-</div>
-
 {% endblock %}

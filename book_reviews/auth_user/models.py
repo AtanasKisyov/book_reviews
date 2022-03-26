@@ -43,6 +43,7 @@ class Profile(models.Model):
         upload_to='user_images/',
         null=True,
         blank=True,
+        default='default_profile_picture.jpg'
     )
 
     first_name = models.CharField(max_length=FIRST_NAME_MAX_LENGTH)
