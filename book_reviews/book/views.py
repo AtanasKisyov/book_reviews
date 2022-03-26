@@ -18,7 +18,7 @@ class HomeView(generic_views.ListView):
 
 
 class AllReviewsView(generic_views.ListView):
-    paginate_by = 5
+    paginate_by = 2
     model = Book
     template_name = 'generic/all_reviews.html'
 

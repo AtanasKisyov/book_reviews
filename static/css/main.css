@@ -99,7 +99,7 @@ button {
     color: #fff;
     font-weight: 600;
     border-radius: 5px;
-    width: 10%;
+    width: 100%;
 }
 
 input, textarea, select {
@@ -107,8 +107,18 @@ input, textarea, select {
     border: 0;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
     border-radius: 10px;
-    width: 20%;
+    width: 100%;
     margin: 8px 0;
     display: list-item;
     box-sizing: border-box;
+}
+
+.form_div {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+span {
 }
