@@ -28,6 +28,19 @@ class AllReviewsView(generic_views.ListView):
         return context
 
 
+class UserReviewsView(generic_views.ListView):
+    paginate_by = 5
+    model = Book
+    template_name = 'generic/all_reviews.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(pk=self.request.user.id)
+        context['template_name'] = 'My Reviews'
+        context['user_reviews'] = Book.objects.filter(reviewed_by=profile)
+        return context
+
+
 class CreateReviewView(generic_views.CreateView):
     model = Book
     form_class = CreateBookReviewForm
