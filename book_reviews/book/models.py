@@ -46,6 +46,10 @@ class Book(models.Model):
         choices=CHOICES,
     )
     reviewed_on = models.DateTimeField(auto_now_add=True)
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

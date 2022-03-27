@@ -13,7 +13,7 @@ class HomeView(generic_views.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['template_name'] = 'Home'
-        context['recently_added'] = Book.objects.order_by('-reviewed_on')[:10]
+        context['recently_added'] = Book.objects.filter(is_approved=True).order_by('-reviewed_on')[:10]
         return context
 
 
@@ -24,6 +24,7 @@ class AllReviewsView(generic_views.ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['object_list'] = Book.objects.filter(is_approved=True)
         context['template_name'] = 'All Reviews'
         return context
 
@@ -37,7 +38,7 @@ class UserReviewsView(generic_views.ListView):
         context = super().get_context_data(**kwargs)
         profile = Profile.objects.get(pk=self.request.user.id)
         context['template_name'] = 'My Reviews'
-        context['user_reviews'] = Book.objects.filter(reviewed_by=profile)
+        context['user_reviews'] = Book.objects.filter(is_approved=True).filter(reviewed_by=profile)
         return context
 
 

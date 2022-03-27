@@ -1,0 +1,30 @@
+{% extends 'star_ratings/widget_base.html' %}
+{% load i18n %}
+
+{% block rating_average %}
+    <div class="star-ratings-rating-average">{% trans 'Average: ' %}
+        <span class='star-ratings-rating-value'>{{ rating.average|floatformat:"1" }}</span>
+    </div>
+{% endblock %}
+
+
+{% block rating_user %}
+    {% if user.is_authenticated %}
+        <div class="star-ratings-rating-user">{% trans 'You Rated: ' %}
+            <span class='star-ratings-rating-value' data-when-null="{% trans 'Not rated' %}">{% if user_rating %}
+                {{ user_rating.score }}{% else %}{% trans 'Not rated' %}{% endif %}</span></div>
+    {% endif %}
+{% endblock rating_user %}
+
+{% block rating_clearable %}
+    <div class="star-ratings-clear star-ratings-clear-{{ user_rating|yesno:'visible,hidden' }}">
+        <form action="{% url 'ratings:rate' rating.content_type_id rating.object_id %}"
+              class="star-ratings-rate-action"
+              method="post">
+            {% csrf_token %}
+            <input type="hidden" value="1" name="clear">
+            <input type="hidden" value="{{ request.path }}" name="next">
+            <button type="submit" class="star-ratings-rating-clear">Remove Review</button>
+        </form>
+    </div>
+{% endblock %}
