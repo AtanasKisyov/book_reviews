@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'book_reviews.auth_user',
     'book_reviews.book',
+    'star_ratings',
 ]
 
 MIDDLEWARE = [

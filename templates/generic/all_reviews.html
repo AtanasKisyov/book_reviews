@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load ratings %}
 
 {% block content %}
     <div>
@@ -23,7 +24,7 @@
                     <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
                     <p>Reviewed By: {{ element.reviewed_by }}</p>
                     <p>Reviewed On: {{ element.reviewed_on }}</p>
-                    <p>Users Ratings: 4,5/10</p>
+                    {% ratings element %}
                 </div>
             {% endfor %}
         </ul>

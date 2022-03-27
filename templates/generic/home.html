@@ -1,9 +1,9 @@
 {% extends 'base/base.html' %}
+{% load ratings %}
 {% load static %}
 {% block content %}
 
     <div>
-        <h3>Recently Added</h3>
         <ul class="list">
             {% for element in recently_added.all %}
                 <div class="review-card container">
@@ -11,7 +11,7 @@
                     <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
                     <p>Reviewed By: {{ element.reviewed_by }}</p>
                     <p>Reviewed On: {{ element.reviewed_on }}</p>
-                    <p>Users Ratings: 4,5/10</p>
+                    {% ratings element %}
                 </div>
             {% endfor %}
         </ul>
