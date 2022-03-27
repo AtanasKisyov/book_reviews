@@ -1,10 +1,18 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <div>
+    <div class="form_div">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form }}
+            <label>Title:</label>
+            {{ form.title }}
+            <label>Review:</label>
+            {{ form.review }}
+            <label>Cover:</label>
+            {{ form.cover }}
+            <label>Category:</label>
+            {{ form.category }}
+            {{ form.errors }}
             <button>Edit Review</button>
         </form>
     </div>

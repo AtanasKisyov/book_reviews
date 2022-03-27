@@ -46,7 +46,7 @@ class DetailUserView(generic_views.DetailView):
 
 class EditUserView(generic_views.UpdateView):
     model = Profile
-    template_name = 'user_authorization/login.html'  # change this!
+    template_name = 'user_authorization/edit_user.html'  # change this!
     fields = ('picture', 'first_name', 'last_name')
     success_url = reverse_lazy('home')
 
