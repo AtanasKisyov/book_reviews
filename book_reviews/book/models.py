@@ -1,11 +1,21 @@
 from django.db import models
-
-
 from book_reviews.auth_user.models import Profile
 
 
 class Book(models.Model):
 
+    # Approval constants
+    WAITING_FOR_APPROVAL = 'Waiting for approval'
+    APPROVED = 'Approved'
+    NOT_APPROVED = 'Not Approved'
+    APPROVAL_VERBOSE_NAME = 'Approve'
+
+    APPROVAL_CHOICES = (
+        (APPROVED, APPROVED),
+        (NOT_APPROVED, NOT_APPROVED),
+    )
+
+    # Category constants
     NOT_SPECIFIED = 'Not specified'
     FANTASY = 'Fantasy'
     EDUCATION = 'Education'
@@ -18,7 +28,7 @@ class Book(models.Model):
     HORROR = 'Horror'
     TITLE_MAX_LENGTH = 30
 
-    CHOICES = (
+    CATEGORY_CHOICES = (
         (FANTASY, FANTASY),
         (EDUCATION, EDUCATION),
         (AUTOBIOGRAPHY, AUTOBIOGRAPHY),
@@ -42,11 +52,16 @@ class Book(models.Model):
         on_delete=models.CASCADE
     )
     category = models.CharField(
-        max_length=max([len(x) for (x, _) in CHOICES]),
-        choices=CHOICES,
+        max_length=max([len(x) for (x, _) in CATEGORY_CHOICES]),
+        choices=CATEGORY_CHOICES,
     )
     reviewed_on = models.DateTimeField(auto_now_add=True)
-    is_approved = models.BooleanField(default=False)
+    is_approved = models.CharField(
+        max_length=max([len(x) for (x, _) in APPROVAL_CHOICES]),
+        choices=APPROVAL_CHOICES,
+        default=WAITING_FOR_APPROVAL,
+        verbose_name=APPROVAL_VERBOSE_NAME,
+    )
 
     def __str__(self):
         return self.title

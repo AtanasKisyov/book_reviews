@@ -1,15 +1,25 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <div>
-        <h3 class="welcome_message">{{ object.title }}</h3>
-        <div class="review-card container">
-            <img class="image" src="{{ object.cover.url }}" alt="" width="200" height="200">
-            <p>{{ object.review }}</p>
-            {% if is_owner %}
-                <a href="{% url 'edit_review' object.id %}">Edit</a>
-                <a href="{% url 'delete_review' object.id %}">Delete</a>
-            {% endif %}
-        </div>
+    <div class="form_div">
+        <img src="{{ object.cover.url }}" alt="" width="500" height="500">
+        <h2>{{ object.title }}</h2>
+        <p>{{ object.review }}</p>
+
+        {% if is_owner %}
+            <a href="{% url 'edit_review' object.id %}">Edit</a>
+            <a href="{% url 'delete_review' object.id %}">Delete</a>
+        {% endif %}
+
+        {% if request.user.is_superuser or request.user.is_staff %}
+            <form method="post">
+                {% csrf_token %}
+                {{ approval_button }}
+                <button>Save</button>
+            </form>
+        {% else %}
+            <p>{{ object.is_approved }}</p>
+        {% endif %}
+
     </div>
 {% endblock %}

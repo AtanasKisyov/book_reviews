@@ -20,6 +20,9 @@
         {% if request.user.is_authenticated %}
             <li class="nav_li"><a href="{% url 'user_reviews' %}">My Reviews</a></li>
             <li class="nav_li"><a href="{% url 'create_review' %}">Add Review</a></li>
+            {% if request.user.is_superuser or request.user.is_staff %}
+                <li class="nav_li"><a href="{% url 'approve_review' %}">Approve Reviews</a></li>
+            {% endif %}
             <li class="right nav_li"><a href="{% url 'logout' %}">Logout</a></li>
             <li class="right nav_li"><a href="{% url 'detail_user' user_profile.id %}">Profile</a></li>
             <li class="right nav li"><p class="banner-text">Hello, {{ user_profile.first_name }}</p></li>

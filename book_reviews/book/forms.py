@@ -20,3 +20,10 @@ class EditBookReviewForm(BookReviewForm):
 
     class Meta(BookReviewForm.Meta):
         pass
+
+
+class ApproveBookReviewForm(forms.ModelForm):
+
+    class Meta:
+        fields = ('is_approved',)
+        model = Book

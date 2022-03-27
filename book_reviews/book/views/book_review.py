@@ -2,44 +2,8 @@ from django.urls import reverse_lazy
 from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
-from book_reviews.book.forms import CreateBookReviewForm, EditBookReviewForm
+from book_reviews.book.forms import CreateBookReviewForm, EditBookReviewForm, ApproveBookReviewForm
 from book_reviews.book.models import Book
-
-
-class HomeView(generic_views.ListView):
-    model = Book
-    template_name = 'generic/home.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['template_name'] = 'Home'
-        context['recently_added'] = Book.objects.filter(is_approved=True).order_by('-reviewed_on')[:10]
-        return context
-
-
-class AllReviewsView(generic_views.ListView):
-    paginate_by = 2
-    model = Book
-    template_name = 'generic/all_reviews.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['object_list'] = Book.objects.filter(is_approved=True)
-        context['template_name'] = 'All Reviews'
-        return context
-
-
-class UserReviewsView(generic_views.ListView):
-    paginate_by = 5
-    model = Book
-    template_name = 'generic/all_reviews.html'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        profile = Profile.objects.get(pk=self.request.user.id)
-        context['template_name'] = 'My Reviews'
-        context['user_reviews'] = Book.objects.filter(is_approved=True).filter(reviewed_by=profile)
-        return context
 
 
 class CreateReviewView(generic_views.CreateView):
@@ -65,9 +29,13 @@ class CreateReviewView(generic_views.CreateView):
         return context
 
 
-class DetailsReviewView(generic_views.DetailView):
+class DetailsReviewView(generic_views.UpdateView):
     model = Book
+    form_class = ApproveBookReviewForm
     template_name = 'review/review_details.html'
+
+    def get_success_url(self):
+        return reverse_lazy('home')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -76,6 +44,8 @@ class DetailsReviewView(generic_views.DetailView):
         if self.request.user.is_authenticated:
             profile = Profile.objects.get(pk=self.request.user.id)
             context['is_owner'] = context['object'].reviewed_by == profile
+        if self.request.user.is_superuser or self.request.user.is_staff:
+            context['approval_button'] = ApproveBookReviewForm
         return context
 
 
