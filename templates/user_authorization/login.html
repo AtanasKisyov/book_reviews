@@ -4,10 +4,7 @@
     <div class="form_div">
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <label>Email:</label>
-            {{ form.username }}
-            <label>Password:</label>
-            {{ form.password }}
+            {{ form }}
             {{ form.errors }}
             <button>Login</button>
         </form>
