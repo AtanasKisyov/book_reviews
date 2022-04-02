@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from book_reviews.auth_user.models import Profile
+
+
+@admin.register(Profile)
+class RegisterProfile(admin.ModelAdmin):
+    pass

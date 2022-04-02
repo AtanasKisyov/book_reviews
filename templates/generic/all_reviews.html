@@ -17,14 +17,13 @@
             {% endif %}
         </span>
         <ul class="list">
-            {% for element in book_list %}
-                <div class="review-card container">
+            {% for element in object_list %}
+                <a class="review-card container" href="{% url 'details_review' element.id %}">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
-                    <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
                     <p>Reviewed By: {{ element.reviewed_by }}</p>
                     <p>Reviewed On: {{ element.reviewed_on }}</p>
                     {% ratings element %}
-                </div>
+                </a>
             {% endfor %}
         </ul>
 {% endblock %}

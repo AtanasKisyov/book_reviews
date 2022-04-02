@@ -23,6 +23,7 @@ class AllReviewsView(generic_views.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['template_name'] = 'All Reviews'
+        context['object_list'] = Book.objects.filter(is_approved=Book.APPROVED)
         return context
 
 

@@ -18,7 +18,7 @@
         </span>
         <ul class="list">
             {% for element in user_reviews %}
-                <a class="review-card container">
+                <a class="review-card container" href="{% url 'details_review' element.id %}">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
                     <p>Approved: {{ element.is_approved }}</p>
                     <p>Reviewed On: {{ element.reviewed_on }}</p>

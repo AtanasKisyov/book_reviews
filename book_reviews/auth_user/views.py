@@ -7,7 +7,7 @@ from book_reviews.auth_user.models import Profile, AuthUser
 
 class RegisterUserView(generic_views.CreateView):
     form_class = custom_forms.RegisterUserForm
-    template_name = 'user_authorization/register.html'
+    template_name = 'user/register.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
@@ -16,7 +16,7 @@ class RegisterUserView(generic_views.CreateView):
 
 
 class LoginUserView(auth_views.LoginView):
-    template_name = 'user_authorization/login.html'
+    template_name = 'user/login.html'
     success_url = reverse_lazy('home')
 
     def get_success_url(self):
@@ -33,7 +33,7 @@ class LogoutUserView(auth_views.LogoutView):
 
 class DetailUserView(generic_views.DetailView):
     model = Profile
-    template_name = 'user_authorization/user_details.html'
+    template_name = 'user/user_details.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,7 +46,7 @@ class DetailUserView(generic_views.DetailView):
 
 class EditUserView(generic_views.UpdateView):
     model = Profile
-    template_name = 'user_authorization/edit_user.html'  # change this!
+    template_name = 'user/edit_user.html'
     fields = ('picture', 'first_name', 'last_name')
     success_url = reverse_lazy('home')
 
@@ -58,5 +58,5 @@ class EditUserView(generic_views.UpdateView):
 
 class DeleteUserView(generic_views.DeleteView):
     model = AuthUser
-    template_name = 'user_authorization/delete_user.html'
+    template_name = 'user/delete_user.html'
     success_url = reverse_lazy('home')

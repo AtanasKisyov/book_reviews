@@ -5,10 +5,11 @@
     <div>
         <ul class="list">
             {% for element in object_list.all %}
-                <div class="review-card container">
+                <a class="review-card container" href="{% url 'details_review' element.id %}">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
-                    <a href="{% url 'details_review' element.id %}" class="button">Details</a>
-                </div>
+                    <p>Reviewed By: {{ element.reviewed_by }}</p>
+                    <p>Reviewed On: {{ element.reviewed_on }}</p>
+                </a>
             {% endfor %}
         </ul>
     </div>
