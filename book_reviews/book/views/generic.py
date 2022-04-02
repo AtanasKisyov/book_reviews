@@ -16,19 +16,18 @@ class HomeView(generic_views.ListView):
 
 
 class AllReviewsView(generic_views.ListView):
-    paginate_by = 2
     model = Book
     template_name = 'generic/all_reviews.html'
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['object_list'] = Book.objects.filter(is_approved=Book.APPROVED)
         context['template_name'] = 'All Reviews'
         return context
 
 
 class UserReviewsView(generic_views.ListView):
-    paginate_by = 5
+    paginate_by = 6
     model = Book
     template_name = 'generic/user_reviews.html'
 
@@ -41,7 +40,7 @@ class UserReviewsView(generic_views.ListView):
 
 
 class ApproveReviewView(generic_views.ListView):
-    paginate_by = 5
+    paginate_by = 6
     model = Book
     template_name = 'generic/waiting_approval.html'
 

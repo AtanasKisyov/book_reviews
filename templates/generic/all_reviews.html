@@ -3,9 +3,8 @@
 
 {% block content %}
     <div>
-        <h3>Reviews</h3>
         <span>
-        {% if page_obj.has_previous %}
+            {% if page_obj.has_previous %}
             <a href="?page=1">&laquo; first</a>
             <a href="?page={{ page_obj.previous_page_number }}">previous</a>
         {% endif %}
@@ -18,7 +17,7 @@
             {% endif %}
         </span>
         <ul class="list">
-            {% for element in object_list.all %}
+            {% for element in book_list %}
                 <div class="review-card container">
                     <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
                     <a href="{% url 'details_review' element.id %}" class="card-paragraph">Details</a>
@@ -28,6 +27,4 @@
                 </div>
             {% endfor %}
         </ul>
-    </div>
-
 {% endblock %}

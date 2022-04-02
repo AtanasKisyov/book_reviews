@@ -2,6 +2,15 @@ from django.db import models
 from book_reviews.auth_user.models import Profile
 
 
+class Category(models.Model):
+
+    CATEGORY_NAME_MAX_LENGTH = 50
+
+    category_name = models.CharField(
+        max_length=50,
+    )
+
+
 class Book(models.Model):
 
     # Approval constants
@@ -44,18 +53,19 @@ class Book(models.Model):
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH
     )
-
     cover = models.ImageField()
     review = models.TextField()
     reviewed_by = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE
     )
-    category = models.CharField(
-        max_length=max([len(x) for (x, _) in CATEGORY_CHOICES]),
-        choices=CATEGORY_CHOICES,
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
     )
-    reviewed_on = models.DateTimeField(auto_now_add=True)
+    reviewed_on = models.DateTimeField(
+        auto_now_add=True
+    )
     is_approved = models.CharField(
         max_length=max([len(x) for (x, _) in APPROVAL_CHOICES]),
         choices=APPROVAL_CHOICES,

@@ -131,3 +131,9 @@ input, textarea, select {
     flex-direction: column;
     align-items: center;
 }
+
+.paginator {
+    flex-direction: column;
+    align-items: center;
+    display: -ms-flexbox;
+}
