@@ -1,7 +1,7 @@
 from django.urls import path
 
-from book_reviews.book.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
-from book_reviews.book.views.book_review import CreateReviewView, EditReviewView, DeleteReviewView, DetailsReviewView
+from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
+from book_reviews.review.views.book_review import CreateReviewView, EditReviewView, DeleteReviewView, DetailsReviewView
 
 
 urlpatterns = [

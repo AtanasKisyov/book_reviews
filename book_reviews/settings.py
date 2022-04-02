@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'book_reviews.auth_user',
-    'book_reviews.book',
+    'book_reviews.review',
     'star_ratings',
 ]
 

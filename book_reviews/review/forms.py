@@ -1,13 +1,13 @@
 from django import forms
 
-from book_reviews.book.models import Book
+from book_reviews.review.models import Review
 
 
 class BookReviewForm(forms.ModelForm):
 
     class Meta:
         fields = ('title', 'review', 'cover', 'category')
-        model = Book
+        model = Review
 
 
 class CreateBookReviewForm(BookReviewForm):
@@ -26,4 +26,4 @@ class ApproveBookReviewForm(forms.ModelForm):
 
     class Meta:
         fields = ('is_approved',)
-        model = Book
+        model = Review

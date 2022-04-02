@@ -14,7 +14,7 @@ class Category(models.Model):
         return self.category_name
 
 
-class Book(models.Model):
+class Review(models.Model):
 
     # Approval constants
     WAITING_FOR_APPROVAL = 'Waiting for approval'
@@ -58,7 +58,7 @@ class Book(models.Model):
 
 class Comment(models.Model):
     content = models.TextField()
-    book = models.ForeignKey(
-        Book,
+    review = models.ForeignKey(
+        Review,
         on_delete=models.CASCADE
     )

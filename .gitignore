@@ -5,6 +5,7 @@ media
 book_reviews/__pycache__/
 book_reviews/auth_user/migrations/__pycache__/
 book_reviews/auth_user/templatetags/__pycache__/
-book_reviews/book/__pycache__/
-book_reviews/book/migrations/__pycache__/
+book_reviews/review/__pycache__/
+book_reviews/review/migrations/__pycache__/
 book_reviews/auth_user/__pycache__/
+*__pycache__*
