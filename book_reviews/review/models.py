@@ -58,6 +58,10 @@ class Review(models.Model):
 
 class Comment(models.Model):
     content = models.TextField()
+    commented_by = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+    )
     review = models.ForeignKey(
         Review,
         on_delete=models.CASCADE

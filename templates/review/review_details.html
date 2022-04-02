@@ -10,7 +10,16 @@
             <a href="{% url 'edit_review' object.id %}">Edit</a>
             <a href="{% url 'delete_review' object.id %}">Delete</a>
         {% endif %}
-
+        {% if comments %}
+            <h2>Comments:</h2>
+            {% for comment in comments %}
+                <div>
+                    <h3>{{ comment.commented_by }}</h3>
+                    <p>{{ comment.content }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <a class="button" href="{% url 'review_comment' object.id %}">Add Comment</a>
         {% if request.user.is_superuser or request.user.is_staff %}
             <form method="post">
                 {% csrf_token %}

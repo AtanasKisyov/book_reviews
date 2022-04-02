@@ -3,7 +3,7 @@ from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.forms import CreateBookReviewForm, EditBookReviewForm, ApproveBookReviewForm
-from book_reviews.review.models import Review
+from book_reviews.review.models import Review, Comment
 
 
 class CreateReviewView(generic_views.CreateView):
@@ -21,7 +21,7 @@ class CreateReviewView(generic_views.CreateView):
         user = Profile.objects.get(pk=self.request.user.id)
         form.instance.reviewed_by = user
         form.save()
-        return super(CreateReviewView, self).form_valid(form)  # Test super method without arguments
+        return super().form_valid(form)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -41,6 +41,7 @@ class DetailsReviewView(generic_views.UpdateView):
         context = super().get_context_data(**kwargs)
         context['template_name'] = 'Details'
         context['is_owner'] = False
+        context['comments'] = Comment.objects.filter(review_id=self.object.id)
         if self.request.user.is_authenticated:
             profile = Profile.objects.get(pk=self.request.user.id)
             context['is_owner'] = context['object'].reviewed_by == profile
@@ -53,7 +54,7 @@ class EditReviewView(generic_views.UpdateView):
     model = Review
     form_class = EditBookReviewForm
     template_name = 'review/review_edit.html'
-    success_url = reverse_lazy('home')  # Change it to review details
+    success_url = reverse_lazy('home')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -1,5 +1,6 @@
 from django.urls import path
 
+from book_reviews.review.views.comment import AddCommentView
 from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
 from book_reviews.review.views.book_review import CreateReviewView, EditReviewView, DeleteReviewView, DetailsReviewView
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path('review/delete/int:<pk>', DeleteReviewView.as_view(), name='delete_review'),
     path('review/details/int:<pk>', DetailsReviewView.as_view(), name='details_review'),
     path('review/approve/', ApproveReviewView.as_view(), name='approve_review'),
+    path('review/details/int:<pk>/comment/', AddCommentView.as_view(), name='review_comment'),
 ]
