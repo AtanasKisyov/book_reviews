@@ -10,6 +10,9 @@ class Category(models.Model):
         max_length=50,
     )
 
+    def __str__(self):
+        return self.category_name
+
 
 class Book(models.Model):
 
@@ -24,31 +27,7 @@ class Book(models.Model):
         (NOT_APPROVED, NOT_APPROVED),
     )
 
-    # Category constants
-    NOT_SPECIFIED = 'Not specified'
-    FANTASY = 'Fantasy'
-    EDUCATION = 'Education'
-    AUTOBIOGRAPHY = 'Autobiography'
-    CRIMINAL = 'Criminal'
-    ROMANTIC = 'Romantic'
-    SCIENCE_FICTION = 'Science Fiction'
-    COMIC_BOOK = 'Comic Book'
-    CLASSIC = 'Classic'
-    HORROR = 'Horror'
     TITLE_MAX_LENGTH = 30
-
-    CATEGORY_CHOICES = (
-        (FANTASY, FANTASY),
-        (EDUCATION, EDUCATION),
-        (AUTOBIOGRAPHY, AUTOBIOGRAPHY),
-        (CRIMINAL, CRIMINAL),
-        (ROMANTIC, ROMANTIC),
-        (SCIENCE_FICTION, SCIENCE_FICTION),
-        (COMIC_BOOK, COMIC_BOOK),
-        (CLASSIC, CLASSIC),
-        (HORROR, HORROR),
-        (NOT_SPECIFIED, NOT_SPECIFIED),
-    )
 
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH
