@@ -1,7 +1,8 @@
 from django.contrib.auth import views as auth_views
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 from book_reviews.auth_user import forms as custom_forms
+from book_reviews.auth_user.forms import ChangePasswordForm
 from book_reviews.auth_user.models import Profile, AuthUser
 
 
@@ -62,3 +63,23 @@ class DeleteUserView(generic_views.DeleteView):
     model = AuthUser
     template_name = 'user/delete_user.html'
     success_url = reverse_lazy('home')
+
+
+class ChangePasswordView(generic_views.UpdateView):
+    model = AuthUser
+    form_class = ChangePasswordForm
+    fields = '__all__'
+    template_name = 'user/change_password.html'
+
+    def get_form_class(self):
+        return self.form_class
+
+    def get_success_url(self):
+        kwargs = {'pk': self.request.user.id}
+        return reverse('detail_user', kwargs=kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        kwargs.pop('instance')
+        return kwargs

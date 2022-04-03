@@ -137,3 +137,7 @@ input, textarea, select {
     align-items: center;
     display: -ms-flexbox;
 }
+
+#picture-clear_id {
+    display: none;
+}

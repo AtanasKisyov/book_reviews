@@ -29,3 +29,10 @@ class RegisterUserForm(auth_forms.UserCreationForm):
         )
         profile.save()
         return user
+
+
+class ChangePasswordForm(auth_forms.PasswordChangeForm):
+
+    class Meta:
+        model = UserModel
+        fields = '__all__'

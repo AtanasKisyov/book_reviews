@@ -8,5 +8,6 @@
         <p>{{ object.user.email }}</p>
         <a href="{% url 'edit_user' object.user.id %}">Edit</a>
         <a href="{% url 'delete_user' object.user.id %}">Delete</a>
+        <a href="{% url 'change_password' object.user.id %}">Change Password</a>
     </div>
 {% endblock %}
