@@ -1,14 +1,13 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <h1 class="text-center">Are you sure you want to delete your review ?</h1>
+    <h1 class="text-center">Are you sure you want to delete your comment ?</h1>
         <div class="form_div">
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit">Yes, Delete!</button>
+                <button class="btn btn-danger mt-2" type="submit">Yes, Delete!</button>
                 <a class="button" href="{% url 'home' %}">No, go to Home Page!</a>
             </form>
         </div>
-
 {% endblock %}

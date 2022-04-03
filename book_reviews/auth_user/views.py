@@ -32,6 +32,7 @@ class LogoutUserView(auth_views.LogoutView):
 
 
 class DetailUserView(generic_views.DetailView):
+    TEMPLATE_NAME = 'Profile Details'
     model = Profile
     template_name = 'user/user_details.html'
 
@@ -40,11 +41,12 @@ class DetailUserView(generic_views.DetailView):
         user = self.object.user
         profile = Profile.objects.get(pk=user.id)
         context['profile'] = profile
-        context['template_name'] = 'Profile Details'
+        context['template_name'] = self.TEMPLATE_NAME
         return context
 
 
 class EditUserView(generic_views.UpdateView):
+    TEMPLATE_NAME = 'Edit Profile'
     model = Profile
     template_name = 'user/edit_user.html'
     fields = ('picture', 'first_name', 'last_name')
@@ -52,7 +54,7 @@ class EditUserView(generic_views.UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['template_name'] = 'Edit Profile'
+        context['template_name'] = self.TEMPLATE_NAME
         return context
 
 

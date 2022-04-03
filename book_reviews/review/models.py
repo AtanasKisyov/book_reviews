@@ -27,7 +27,7 @@ class Review(models.Model):
         (NOT_APPROVED, NOT_APPROVED),
     )
 
-    TITLE_MAX_LENGTH = 30
+    TITLE_MAX_LENGTH = 250
 
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH
