@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 
@@ -74,6 +75,9 @@ class EditReviewView(LoginRequiredMixin, generic_views.UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        profile = Profile.objects.get(pk=self.request.user.id)
+        if self.object.reviewed_by_id != profile.id:
+            redirect('home')  # Implement 401 page
         context['template_name'] = self.TEMPLATE_NAME
         return context
 
