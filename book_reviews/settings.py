@@ -3,11 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY for running tests
-SECRET_KEY = 'django_secret_key_for_running_test'
-
-# SECRET_KEY for production
-# SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_tests')
 
 DEBUG = True
 

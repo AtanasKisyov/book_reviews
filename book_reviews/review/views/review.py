@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 
@@ -6,12 +7,19 @@ from book_reviews.review.forms import CreateBookReviewForm, EditBookReviewForm, 
 from book_reviews.review.models import Review, Comment
 
 
-class CreateReviewView(generic_views.CreateView):
+class CustomLoginRequiredMixin(LoginRequiredMixin):
+
+    def get_login_url(self):
+        return reverse_lazy('login')
+
+
+class CreateReviewView(CustomLoginRequiredMixin, generic_views.CreateView):
     TEMPLATE_NAME = 'Add Review'
     model = Review
     form_class = CreateBookReviewForm
     template_name = 'review/review_add.html'
     success_url = reverse_lazy('home')
+    redirect_field_name = reverse_lazy('login')  # Implement 401 page
 
     def get_from_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -53,11 +61,12 @@ class DetailsReviewView(generic_views.UpdateView):
         return context
 
 
-class EditReviewView(generic_views.UpdateView):
+class EditReviewView(LoginRequiredMixin, generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Review'
     model = Review
     form_class = EditBookReviewForm
     template_name = 'review/review_edit.html'
+    redirect_field_name = reverse_lazy('login')  # Implement 401 page
 
     def get_success_url(self):
         object_id = self.object.id
@@ -69,11 +78,12 @@ class EditReviewView(generic_views.UpdateView):
         return context
 
 
-class DeleteReviewView(generic_views.DeleteView):
+class DeleteReviewView(LoginRequiredMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Review'
     model = Review
     template_name = 'review/review_delete.html'
     success_url = reverse_lazy('home')
+    redirect_field_name = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

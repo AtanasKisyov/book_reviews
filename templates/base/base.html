@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav>
-    <ul class="navbar banner">
+    <ul class="comment banner">
         <li class="nav_li"><a href="{% url 'home' %}">Home</a></li>
         <li class="nav_li"><a href="{% url 'all_reviews' %}">All Reviews</a></li>
         {% if request.user.is_authenticated %}
@@ -32,7 +32,7 @@
         {% endif %}
     </ul>
 </nav>
-<div class="navbar banner">
+<div class="comment banner">
     {% if not request.user.is_authenticated %}
         <h2 class="banner-text">Welcome to Book Reviews</h2>
         <p class="banner-text">You can post reviews on your favourite (and not so favourite) books.</p>

@@ -13,12 +13,12 @@
         {% if comments %}
             <h2>Comments:</h2>
             {% for comment in comments %}
-                <div>
+                <div class="comment">
                     <h3>{{ comment.commented_by }}</h3>
                     <p>{{ comment.content }}</p>
                     {% if profile == comment.commented_by %}
-                        <a href="{% url 'edit_comment' comment.id %}">Edit Comment</a>
-                        <a href="{% url 'delete_comment' comment.id %}">Delete Comment</a>
+                        <a class="button" href="{% url 'edit_comment' comment.id %}">Edit Comment</a>
+                        <a class="button" href="{% url 'delete_comment' comment.id %}">Delete Comment</a>
                     {% endif %}
                 </div>
             {% endfor %}

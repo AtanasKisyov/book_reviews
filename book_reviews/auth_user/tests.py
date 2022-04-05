@@ -7,7 +7,8 @@ from book_reviews.auth_user.models import Profile, AuthUser
 from book_reviews.auth_user.views import DetailUserView
 
 
-class UserProfileCreateViewTest(django_test.TestCase):
+class UserProfileTest(django_test.TestCase):
+
     VALID_REGISTER_USER_DATA = {
         'email': 'test@test.com',
         'first_name': 'Pesho',

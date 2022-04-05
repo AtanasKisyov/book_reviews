@@ -9,11 +9,12 @@
     font-style: italic;
 }
 
-.navbar {
+.comment {
     list-style-type: none;
     margin-top: 0;
     overflow: hidden;
-    background-color: black;
+    background-color: lightgrey;
+    color: black;
     border: 2px solid black;
     border-radius: 12px;
     padding: 5px;
@@ -26,6 +27,7 @@ a {
 
 a:hover {
     text-decoration: underline;
+    transform: scale(1.05);
 }
 
 .right {
@@ -98,8 +100,9 @@ body {
     color: #fff;
     font-weight: 600;
     border-radius: 5px;
-    width: 100%;
+    width: 9%;
     margin-top: 1rem;
+    transform: scale(1.05);
 }
 
 button {
@@ -112,6 +115,7 @@ button {
     font-weight: 600;
     border-radius: 5px;
     width: 100%;
+    transform: scale(1.05);
 }
 
 input, textarea, select {
