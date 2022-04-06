@@ -32,7 +32,12 @@ class Review(models.Model):
     title = models.CharField(
         max_length=TITLE_MAX_LENGTH
     )
-    cover = models.ImageField()
+    cover = models.ImageField(
+        upload_to='review/',
+        null=True,
+        blank=True,
+        default='default_review_cover.jpg'
+    )
     review = models.TextField()
     reviewed_by = models.ForeignKey(
         Profile,

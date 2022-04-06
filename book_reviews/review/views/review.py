@@ -9,6 +9,8 @@ from book_reviews.review.models import Review, Comment
 
 
 class CustomLoginRequiredMixin(LoginRequiredMixin):
+    login_url = reverse_lazy('login')
+    redirect_field_name = 'redirect_to'
 
     def get_login_url(self):
         return reverse_lazy('login')
@@ -20,7 +22,6 @@ class CreateReviewView(CustomLoginRequiredMixin, generic_views.CreateView):
     form_class = CreateBookReviewForm
     template_name = 'review/review_add.html'
     success_url = reverse_lazy('home')
-    redirect_field_name = reverse_lazy('login')  # Implement 401 page
 
     def get_from_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -62,12 +63,11 @@ class DetailsReviewView(generic_views.UpdateView):
         return context
 
 
-class EditReviewView(LoginRequiredMixin, generic_views.UpdateView):
+class EditReviewView(CustomLoginRequiredMixin, generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Review'
     model = Review
     form_class = EditBookReviewForm
     template_name = 'review/review_edit.html'
-    redirect_field_name = reverse_lazy('login')  # Implement 401 page
 
     def get_success_url(self):
         object_id = self.object.id
@@ -75,19 +75,15 @@ class EditReviewView(LoginRequiredMixin, generic_views.UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        profile = Profile.objects.get(pk=self.request.user.id)
-        if self.object.reviewed_by_id != profile.id:
-            redirect('home')  # Implement 401 page
         context['template_name'] = self.TEMPLATE_NAME
         return context
 
 
-class DeleteReviewView(LoginRequiredMixin, generic_views.DeleteView):
+class DeleteReviewView(CustomLoginRequiredMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Review'
     model = Review
     template_name = 'review/review_delete.html'
     success_url = reverse_lazy('home')
-    redirect_field_name = reverse_lazy('login')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
