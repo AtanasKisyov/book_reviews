@@ -36,7 +36,7 @@ class Review(models.Model):
         upload_to='review/',
         null=True,
         blank=True,
-        default='default_review_cover.jpg'
+        default='review/default_review_cover.jpg'
     )
     review = models.TextField()
     reviewed_by = models.ForeignKey(
