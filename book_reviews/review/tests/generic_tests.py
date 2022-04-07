@@ -1,16 +1,11 @@
 from django import test as django_test
-from django.urls import reverse
 
 from book_reviews.auth_user.tests import UserProfileTest
+from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
 
 
-class GenericViewsTest(django_test.TestCase):
-
-    HOME_URL = reverse('home')
-    ALL_REVIEWS_URL = reverse('all_reviews')
-    USER_REVIEWS_URL = reverse('user_reviews')
-    APPROVE_REVIEWS_URL = reverse('approve_review')
+class GenericViewsTest(CreateTestDataMixin, django_test.TestCase):
 
     def test_home_page_shows_correct_template_name(self):
         response = self.client.get(self.HOME_URL)
@@ -28,8 +23,8 @@ class GenericViewsTest(django_test.TestCase):
 
     def test_user_reviews_view_shows_correct_template_name(self):
         register_url = UserProfileTest.REGISTER_STARTING_URL
-        register_user_data = UserProfileTest.VALID_REGISTER_USER_DATA
-        login_user_data = UserProfileTest.VALID_LOGIN_USER_DATA
+        register_user_data = self.valid_register_user_data
+        login_user_data = self.valid_login_user_data
 
         self.client.post(register_url, register_user_data)
         self.client.login(**login_user_data)
@@ -44,4 +39,3 @@ class GenericViewsTest(django_test.TestCase):
         expected = ApproveReviewView.TEMPLATE_NAME
         actual = response.context_data['template_name']
         self.assertEqual(expected, actual)
-

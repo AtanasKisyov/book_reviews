@@ -1,52 +1,20 @@
 from django import test as django_test
-from django.contrib.auth import get_user
-from django.http import HttpRequest
 from django.urls import reverse
 
 from book_reviews.auth_user.models import Profile, AuthUser
 from book_reviews.auth_user.views import DetailUserView
+from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 
 
-class UserProfileTest(django_test.TestCase):
-
-    VALID_REGISTER_USER_DATA = {
-        'email': 'test@test.com',
-        'first_name': 'Pesho',
-        'last_name': 'Peshov',
-        'password1': 'unbreakable_password_1234',
-        'password2': 'unbreakable_password_1234',
-
-    }
-
-    VALID_LOGIN_USER_DATA = {
-        'email': 'test@test.com',
-        'password': 'unbreakable_password_1234',
-    }
-
-    REGISTER_STARTING_URL = reverse('register')
-    REGISTER_SUCCESS_URL = reverse('login')
-    LOGIN_STARTING_URL = reverse('login')
-    LOGIN_SUCCESS_URL = reverse('home')
-
-    def register(self):
-        return self.client.post(self.REGISTER_STARTING_URL, data=self.VALID_REGISTER_USER_DATA)
-
-    def register_and_login(self):
-        self.register()
-        return self.client.login(**self.VALID_LOGIN_USER_DATA)
-
-    def get_user_data(self):
-        request = HttpRequest()
-        request.session = self.client.session
-        return get_user(request)
+class UserProfileTest(CreateTestDataMixin, django_test.TestCase):
 
     def test_create_profile(self):
         self.register()
 
         profile = Profile.objects.first()
 
-        expected_first_name = self.VALID_REGISTER_USER_DATA['first_name']
-        expected_last_name = self.VALID_REGISTER_USER_DATA['last_name']
+        expected_first_name = self.valid_register_user_data['first_name']
+        expected_last_name = self.valid_register_user_data['last_name']
         actual_first_name = profile.first_name
         actual_last_name = profile.last_name
 
@@ -59,7 +27,7 @@ class UserProfileTest(django_test.TestCase):
 
         user = AuthUser.objects.first()
 
-        expected = self.VALID_REGISTER_USER_DATA['email']
+        expected = self.valid_register_user_data['email']
         actual = user.email
         self.assertEqual(expected, actual)
         self.assertFalse(user.is_staff)
@@ -110,15 +78,15 @@ class UserProfileTest(django_test.TestCase):
         self.register_and_login()
         user = self.get_user_data()
 
-        self.VALID_REGISTER_USER_DATA['first_name'] = 'Gosho'
+        self.valid_register_user_data['first_name'] = 'Gosho'
         self.client.post(
             reverse(url_name, kwargs={'pk': user.id}),
-            data=self.VALID_REGISTER_USER_DATA,
+            data=self.valid_register_user_data,
         )
 
         user = self.get_user_data()
         profile = Profile.objects.get(pk=user.id)
-        expected = self.VALID_REGISTER_USER_DATA['first_name']
+        expected = self.valid_register_user_data['first_name']
         actual = profile.first_name
         self.assertEqual(expected, actual)
 

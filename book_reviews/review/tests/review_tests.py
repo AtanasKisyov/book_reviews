@@ -1,54 +1,12 @@
 from django import test as django_test
-from django.contrib.auth import get_user
-from django.http import HttpRequest
 from django.urls import reverse
-from book_reviews.review.models import Review, Category
+
+from book_reviews.review.models import Review
+from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.review import DetailsReviewView
 
 
-class ReviewTest(django_test.TestCase):
-
-    VALID_REGISTER_USER_DATA = {
-        'email': 'test@test.com',
-        'first_name': 'Pesho',
-        'last_name': 'Peshov',
-        'password1': 'unbreakable_password_1234',
-        'password2': 'unbreakable_password_1234',
-
-    }
-
-    VALID_LOGIN_USER_DATA = {
-        'email': 'test@test.com',
-        'password': 'unbreakable_password_1234',
-    }
-    valid_review_data = {
-        'title': 'Some Review',
-        'review': 'Some content',
-        'category': 'Fantasy',
-    }
-
-    CREATE_REVIEW_URL = reverse('create_review')
-
-    def add_dynamic_review_data(self):
-        self.register_and_login()
-        category = Category.objects.create(category_name='Fantasy')
-        self.valid_review_data['reviewed_by'] = self.get_user_data()
-        self.valid_review_data['category'] = category.id
-        return self.valid_review_data
-
-    def register_and_login(self):
-        register_url = reverse('register')
-        self.client.post(register_url, data=self.VALID_REGISTER_USER_DATA)
-        return self.client.login(**self.VALID_LOGIN_USER_DATA)
-
-    def create_review(self):
-        self.add_dynamic_review_data()
-        return self.client.post(self.CREATE_REVIEW_URL, data=self.valid_review_data)
-
-    def get_user_data(self):
-        request = HttpRequest()
-        request.session = self.client.session
-        return get_user(request)
+class ReviewTest(CreateTestDataMixin, django_test.TestCase):
 
     def test_create_view_not_available_for_non_authenticated_users(self):
         response = self.client.get(self.CREATE_REVIEW_URL)
