@@ -7,7 +7,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'django-book-review-project.herokuapp.com'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
