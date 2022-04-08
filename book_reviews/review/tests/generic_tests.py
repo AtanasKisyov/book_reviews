@@ -5,7 +5,7 @@ from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
 
 
-class GenericViewsTest(CreateTestDataMixin, django_test.TestCase):
+class GenericViewsTest(CreateTestDataMixin):
 
     def test_home_page_shows_correct_template_name(self):
         response = self.client.get(self.HOME_URL)

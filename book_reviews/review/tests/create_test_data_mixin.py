@@ -3,7 +3,7 @@ from django.contrib.auth import get_user
 from django.http import HttpRequest
 from django.urls import reverse
 
-from book_reviews.review.models import Category
+from book_reviews.review.models import Category, Review
 
 
 class CreateTestDataMixin(django_test.TestCase):
@@ -26,6 +26,10 @@ class CreateTestDataMixin(django_test.TestCase):
         'title': 'Some Review',
         'review': 'Some content',
         'category': 'Fantasy',
+    }
+
+    valid_comment_data = {
+        'content': 'Add some comment',
     }
 
     REGISTER_STARTING_URL = reverse('register')
@@ -61,3 +65,11 @@ class CreateTestDataMixin(django_test.TestCase):
         self.add_dynamic_review_data()
         return self.client.post(self.CREATE_REVIEW_URL, data=self.valid_review_data)
 
+    def create_comment(self):
+        self.create_review()
+        review = Review.objects.first()
+        user = self.get_user_data()
+        self.valid_comment_data['review_id'] = review.id
+        self.valid_comment_data['commented_by'] = user
+        comment_url = reverse('review_comment', kwargs={'pk': review.id})
+        return self.client.post(comment_url, data=self.valid_comment_data)

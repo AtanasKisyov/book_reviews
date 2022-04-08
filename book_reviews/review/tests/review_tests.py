@@ -6,7 +6,7 @@ from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.review import DetailsReviewView
 
 
-class ReviewTest(CreateTestDataMixin, django_test.TestCase):
+class ReviewTest(CreateTestDataMixin):
 
     def test_create_view_not_available_for_non_authenticated_users(self):
         response = self.client.get(self.CREATE_REVIEW_URL)
