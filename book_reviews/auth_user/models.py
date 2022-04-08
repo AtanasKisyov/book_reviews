@@ -1,4 +1,5 @@
 from django.contrib.auth import models as auth_models
+from django.core.validators import MinLengthValidator
 from django.db import models
 
 from book_reviews.auth_user import managers as custom_manager
@@ -46,8 +47,14 @@ class Profile(models.Model):
         default='user_images/default_profile_picture.jpg'
     )
 
-    first_name = models.CharField(max_length=FIRST_NAME_MAX_LENGTH)
-    last_name = models.CharField(max_length=LAST_NAME_MAX_LENGTH)
+    first_name = models.CharField(
+        max_length=FIRST_NAME_MAX_LENGTH,
+        validators=(MinLengthValidator(1),),
+    )
+    last_name = models.CharField(
+        max_length=LAST_NAME_MAX_LENGTH,
+        validators=(MinLengthValidator(1),),
+    )
 
     user = models.OneToOneField(
         AuthUser,

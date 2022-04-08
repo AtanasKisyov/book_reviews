@@ -1,4 +1,7 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import MinLengthValidator
 from django.db import models
+
 from book_reviews.auth_user.models import Profile
 
 
@@ -8,6 +11,7 @@ class Category(models.Model):
 
     category_name = models.CharField(
         max_length=50,
+        validators=(MinLengthValidator(1),),
     )
 
     def __str__(self):
@@ -30,7 +34,8 @@ class Review(models.Model):
     TITLE_MAX_LENGTH = 250
 
     title = models.CharField(
-        max_length=TITLE_MAX_LENGTH
+        max_length=TITLE_MAX_LENGTH,
+        validators=(MinLengthValidator(1),),
     )
     cover = models.ImageField(
         upload_to='review/',
@@ -62,7 +67,7 @@ class Review(models.Model):
 
 
 class Comment(models.Model):
-    content = models.TextField()
+    content = models.TextField(validators=(MinLengthValidator(10),))
     commented_by = models.ForeignKey(
         Profile,
         on_delete=models.CASCADE,
@@ -71,3 +76,9 @@ class Comment(models.Model):
         Review,
         on_delete=models.CASCADE
     )
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if len(self.content) < 1:
+            raise ValidationError('Your comment cannot be empty text!')
+        super().save()
+        return self

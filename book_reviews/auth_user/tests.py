@@ -6,7 +6,7 @@ from book_reviews.auth_user.views import DetailUserView
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 
 
-class UserProfileTest(CreateTestDataMixin, django_test.TestCase):
+class UserProfileTest(CreateTestDataMixin):
 
     def test_create_profile(self):
         self.register()
