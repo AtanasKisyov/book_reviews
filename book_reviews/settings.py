@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_tests')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -55,10 +55,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'ENGINE': 'django.db.backends.postgresql',
+    'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+    'PORT': os.getenv('DB_PORT', '5432'),  # if no env variable DB_PORT, return '5432'
+    'NAME': os.getenv('DB_NAME', 'petstagram_db'),
+    'USER': os.getenv('DB_USER', 'postgres'),
+    'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
 }
 
 AUTH_PASSWORD_VALIDATORS = [
