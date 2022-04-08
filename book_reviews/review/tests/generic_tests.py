@@ -1,5 +1,3 @@
-from django import test as django_test
-
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
 

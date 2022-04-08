@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.http import HttpRequest
-from django.test.client import RequestFactory, Client
+from django.test.client import Client
 from django.urls import reverse
 
 from book_reviews.auth_user.models import Profile, AuthUser
