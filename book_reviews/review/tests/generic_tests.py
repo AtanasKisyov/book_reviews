@@ -1,6 +1,5 @@
 from django import test as django_test
 
-from book_reviews.auth_user.tests import UserProfileTest
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 from book_reviews.review.views.generic import HomeView, AllReviewsView, UserReviewsView, ApproveReviewView
 
@@ -22,7 +21,7 @@ class GenericViewsTest(CreateTestDataMixin):
         self.assertEqual(expected, actual)
 
     def test_user_reviews_view_shows_correct_template_name(self):
-        register_url = UserProfileTest.REGISTER_STARTING_URL
+        register_url = self.REGISTER_STARTING_URL
         register_user_data = self.valid_register_user_data
         login_user_data = self.valid_login_user_data
 

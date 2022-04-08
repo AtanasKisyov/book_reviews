@@ -1,4 +1,3 @@
-from django import test as django_test
 from django.urls import reverse
 
 from book_reviews.review.models import Review

@@ -1,7 +1,10 @@
-from django import test as django_test
+from django.contrib import auth
+from django.http import HttpRequest
+from django.test.client import RequestFactory, Client
 from django.urls import reverse
 
 from book_reviews.auth_user.models import Profile, AuthUser
+from book_reviews.auth_user.templatetags.user_profile import user_profile
 from book_reviews.auth_user.views import DetailUserView
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
 
@@ -111,3 +114,41 @@ class UserProfileTest(CreateTestDataMixin):
         expected = 302
         actual = response.status_code
         self.assertEqual(expected, actual)
+
+    def test_user_profile_template_tag_returns_none(self):
+        client = Client()
+        request = HttpRequest()
+        request.user = auth.get_user(client)
+        context = {'request': request}
+        user = user_profile(context)
+        self.assertIsNone(user)
+
+    def test_user_profile_template_tag_returns_correct_data(self):
+        self.register_and_login()
+        request = HttpRequest()
+        request.user = self.get_user_data()
+        context = {'request': request}
+        user = user_profile(context)
+
+        expected_first_name = self.valid_register_user_data['first_name']
+        expected_last_name = self.valid_register_user_data['last_name']
+        actual_first_name = user['first_name']
+        actual_last_name = user['last_name']
+
+        self.assertEqual(expected_first_name, actual_first_name)
+        self.assertEqual(expected_last_name, actual_last_name)
+
+    def test_user_model_data(self):
+        user = AuthUser(first_name='test', last_name='testing', email='test@testing.com')
+
+        expected_first_name = 'test'
+        expected_last_name = 'testing'
+        expected_email = 'test@testing.com'
+
+        actual_first_name = user.first_name
+        actual_last_name = user.last_name
+        actual_email = user.email
+
+        self.assertEqual(expected_first_name, actual_first_name)
+        self.assertEqual(expected_last_name, actual_last_name)
+        self.assertEqual(expected_email, actual_email)
