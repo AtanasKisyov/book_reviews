@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
+    '127.0.0.1',
     'django-book-review-project.herokuapp.com'
 ]
 
@@ -56,11 +56,31 @@ WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 DATABASES = {
     'ENGINE': 'django.db.backends.postgresql',
-    'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-    'PORT': os.getenv('DB_PORT', '5432'),  # if no env variable DB_PORT, return '5432'
-    'NAME': os.getenv('DB_NAME', 'petstagram_db'),
-    'USER': os.getenv('DB_USER', 'postgres'),
-    'PASSWORD': os.getenv('DB_PASSWORD', '1123QwER'),
+    'HOST': os.getenv('HOST', '127.0.0.1'),
+    'PORT': os.getenv('PORT', '5432'),
+    'NAME': os.getenv('DATABASE', 'postgres'),
+    'USER': os.getenv('USER', 'postgres'),
+    'PASSWORD': os.getenv('PASSWORD', '1123QwER'),
+}
+
+LOGGING_LEVEL = 'DEBUG'
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            # DEBUG, WARNING, INFO, ERROR, CRITICAL,
+            'level': LOGGING_LEVEL,
+            'filters': [],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': LOGGING_LEVEL,
+            'handlers': ['console'],
+        }
+    }
 }
 
 AUTH_PASSWORD_VALIDATORS = [
