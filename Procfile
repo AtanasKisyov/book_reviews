@@ -1,2 +1,3 @@
-web: gunicorn --pythonpath book_reviews.wsgi
-release: python book_reviews manage.py migrate
+gunicorn --pythonpath book_reviews.wsgi
+web: python manage.py migrate
+web: python manage.py runserver
