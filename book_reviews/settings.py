@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_
 DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = [
-    'localhost',
+    '127.0.0.1',
     'django-book-review-project.herokuapp.com'
 ]
 
@@ -73,7 +73,7 @@ else:
 
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
-LOGGING_LEVEL = 'DEBUG'
+LOGGING_LEVEL = 'ERROR'
 
 LOGGING = {
     'version': 1,
