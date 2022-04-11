@@ -55,12 +55,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 DATABASES = {
-    'ENGINE': 'django.db.backends.postgresql',
-    'HOST': os.getenv('HOST', '127.0.0.1'),
-    'PORT': os.getenv('PORT', '5432'),
-    'NAME': os.getenv('DATABASE', 'postgres'),
-    'USER': os.getenv('USER', 'postgres'),
-    'PASSWORD': os.getenv('PASSWORD', '1123QwER'),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.getenv('HOST', '127.0.0.1'),
+        'PORT': os.getenv('PORT', '5432'),
+        'NAME': os.getenv('DATABASE', 'postgres'),
+        'USER': os.getenv('USER', 'postgres'),
+        'PASSWORD': os.getenv('PASSWORD', '1123QwER'),
+    }
 }
 
 LOGGING_LEVEL = 'DEBUG'
