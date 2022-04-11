@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '127.0.0.1',
+    'localhost',
     'django-book-review-project.herokuapp.com'
 ]
 
@@ -52,18 +52,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'book_reviews.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.getenv('HOST', '127.0.0.1'),
-        'PORT': os.getenv('PORT', '5432'),
         'NAME': os.getenv('DATABASE', 'postgres'),
-        'USER': os.getenv('USER', 'postgres'),
+        'USER': os.getenv('DB_USER', 'postgres'),
         'PASSWORD': os.getenv('PASSWORD', '1123QwER'),
+        'HOST': os.getenv('HOST', 'localhost'),
+        'PORT': os.getenv('PORT', '5432'),
     }
 }
+WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 LOGGING_LEVEL = 'DEBUG'
 
