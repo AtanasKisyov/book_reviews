@@ -121,7 +121,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'auth_user.AuthUser'
+# AUTH_USER_MODEL = 'auth_user.AuthUser'
 
 STAR_RATINGS_RERATE_SAME_DELETE = True
 
