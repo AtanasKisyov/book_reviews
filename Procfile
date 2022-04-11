@@ -1,3 +1,2 @@
-web: gunicorn django_project.wsgi:application --log-file - --log-level debug
-web: python manage.py collectstatic --noinput
-web: python manage.py migrate
+web: gunicorn --pythonpath book_review.wsgi
+release: python book_review/manage.py migrate
