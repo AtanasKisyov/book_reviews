@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('book_reviews.review.urls')),
+    path('/', include('book_reviews.review.urls')),
     path('admin/', admin.site.urls),
     path('user/', include('book_reviews.auth_user.urls')),
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
