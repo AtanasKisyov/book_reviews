@@ -9,7 +9,7 @@ DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'django-book-review-project.herokuapp.com'
+    'django-book-review-project.herokuapp'
 ]
 
 INSTALLED_APPS = [
@@ -58,7 +58,6 @@ if DEBUG:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 else:
     DATABASES = {
         'default': {
