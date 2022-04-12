@@ -66,7 +66,7 @@ DATABASES = {
 
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
-LOGGING_LEVEL = 'ERROR'
+LOGGING_LEVEL = 'DEBUG'
 
 LOGGING = {
     'version': 1,
