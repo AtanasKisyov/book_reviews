@@ -55,7 +55,6 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'DATABASE_URL': os.environ.get('DATABASE_URL', ''),
         'NAME': os.environ.get('DATABASE', 'postgres'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASSWORD', '1123QwER'),
