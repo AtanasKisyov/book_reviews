@@ -1,0 +1,147 @@
+/* navbar styles */
+.nav_li a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.comment {
+    list-style-type: none;
+    margin-top: 0;
+    overflow: hidden;
+    background-color: lightgrey;
+    color: black;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+a {
+    color: black;
+    text-decoration: initial;
+}
+
+a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
+}
+
+.right {
+    float: right;
+}
+
+/* end navbar */
+
+body {
+    background-color: #bfbcbb;
+}
+
+.banner {
+    background-image: linear-gradient(to top right, rgba(228, 221, 221, 0.50) 10%, rgba(0, 0, 0, 0.80) 60%),
+    url("../images/banner.b6b39703e4a3.jpg");
+    background-attachment: fixed;
+    text-decoration-color: lightgrey;
+}
+
+.banner-text {
+    color: lightgrey;
+    text-align: center;
+}
+
+.review-card {
+    box-shadow: 0 0 3px 0;
+    width: 20%;
+    padding: 20px;
+    background-position: right 35% bottom 45%;
+    box-sizing: border-box;
+    border-radius: 15px;
+    height: 500px;
+    font-weight: bold;
+    margin-bottom: 70px;
+    margin-top: 20px;
+    background-color: #9fa2a6;
+    opacity: 85%;
+    flex: content;
+    margin-left: 120px;
+    float: left;
+}
+
+.container {
+    position: relative;
+}
+
+.container:hover {
+    transform: scale(1.05);
+}
+
+.list {
+    margin: 0 0 0 auto;
+}
+
+.image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.button {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    border: none;
+    background-color: #3F51B5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 9%;
+    margin-top: 1rem;
+    transform: scale(1.05);
+}
+
+button {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    border: none;
+    background-color: #3F51B5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 100%;
+    transform: scale(1.05);
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    width: 100%;
+    margin: 8px 0;
+    display: list-item;
+    box-sizing: border-box;
+}
+
+.form_div {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.paginator {
+    flex-direction: column;
+    align-items: center;
+    display: -ms-flexbox;
+}
+
+#picture-clear_id {
+    display: none;
+}

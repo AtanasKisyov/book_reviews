@@ -4,7 +4,7 @@ from django.http import HttpRequest
 from django.test.client import Client
 from django.urls import reverse
 
-from book_reviews.auth_user.models import Profile, AuthUser
+from book_reviews.auth_user.models import Profile
 from book_reviews.auth_user.templatetags.user_profile import user_profile
 from book_reviews.auth_user.views import DetailUserView
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
@@ -34,7 +34,7 @@ class UserProfileTest(CreateTestDataMixin):
 
         user = UserModel.objects.first()
 
-        expected = self.valid_register_user_data['username']
+        expected = self.valid_register_user_data['email']
         actual = user.username
         self.assertEqual(expected, actual)
         self.assertFalse(user.is_staff)

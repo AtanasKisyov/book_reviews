@@ -9,7 +9,7 @@ from book_reviews.review.models import Category, Review
 class CreateTestDataMixin(django_test.TestCase):
 
     valid_register_user_data = {
-        'username': 'test@test.com',
+        'email': 'test@test.com',
         'first_name': 'Pesho',
         'last_name': 'Peshov',
         'password1': 'unbreakable_password_1234',
@@ -18,7 +18,7 @@ class CreateTestDataMixin(django_test.TestCase):
     }
 
     valid_login_user_data = {
-        'username': 'test@test.com',
+        'email': 'test@test.com',
         'password': 'unbreakable_password_1234',
     }
 

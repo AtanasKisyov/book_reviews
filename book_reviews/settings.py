@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django_not_so_secret_key_for_running_tests')
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -66,7 +66,7 @@ DATABASES = {
 
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
-LOGGING_LEVEL = 'DEBUG'
+LOGGING_LEVEL = 'INFO'
 
 LOGGING = {
     'version': 1,
@@ -125,7 +125,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'auth_user.AuthUser'
+AUTH_USER_MODEL = 'auth_user.AuthUser'
 
 STAR_RATINGS_RERATE_SAME_DELETE = True
 
