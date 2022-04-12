@@ -8,7 +8,7 @@ UserModel = get_user_model()
 class RegisterUserForm(auth_forms.UserCreationForm):
     class Meta:
         model = UserModel
-        fields = ('email', 'first_name', 'last_name')
+        fields = ('username', 'first_name', 'last_name')
 
     def clean_first_name(self):
         return self.cleaned_data['first_name']
@@ -17,8 +17,8 @@ class RegisterUserForm(auth_forms.UserCreationForm):
         return self.cleaned_data['last_name']
 
     def save(self, commit=True):
-        user = AuthUser(
-            email=self.cleaned_data['email'],
+        user = UserModel(
+            username=self.cleaned_data['username'],
         )
         user.set_password(self.cleaned_data['password1'])
         user.save()

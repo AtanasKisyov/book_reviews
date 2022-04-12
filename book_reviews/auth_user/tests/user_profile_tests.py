@@ -1,4 +1,5 @@
 from django.contrib import auth
+from django.contrib.auth import get_user_model
 from django.http import HttpRequest
 from django.test.client import Client
 from django.urls import reverse
@@ -7,6 +8,9 @@ from book_reviews.auth_user.models import Profile, AuthUser
 from book_reviews.auth_user.templatetags.user_profile import user_profile
 from book_reviews.auth_user.views import DetailUserView
 from book_reviews.review.tests.create_test_data_mixin import CreateTestDataMixin
+
+
+UserModel = get_user_model()
 
 
 class UserProfileTest(CreateTestDataMixin):
@@ -28,10 +32,10 @@ class UserProfileTest(CreateTestDataMixin):
     def test_create_user(self):
         self.register()
 
-        user = AuthUser.objects.first()
+        user = UserModel.objects.first()
 
-        expected = self.valid_register_user_data['email']
-        actual = user.email
+        expected = self.valid_register_user_data['username']
+        actual = user.username
         self.assertEqual(expected, actual)
         self.assertFalse(user.is_staff)
 
@@ -139,7 +143,7 @@ class UserProfileTest(CreateTestDataMixin):
         self.assertEqual(expected_last_name, actual_last_name)
 
     def test_user_model_data(self):
-        user = AuthUser(first_name='test', last_name='testing', email='test@testing.com')
+        user = UserModel(first_name='test', last_name='testing', email='test@testing.com')
 
         expected_first_name = 'test'
         expected_last_name = 'testing'

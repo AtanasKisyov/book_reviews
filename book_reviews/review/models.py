@@ -29,6 +29,7 @@ class Review(models.Model):
     APPROVAL_CHOICES = (
         (APPROVED, APPROVED),
         (NOT_APPROVED, NOT_APPROVED),
+        (WAITING_FOR_APPROVAL, WAITING_FOR_APPROVAL)
     )
 
     TITLE_MAX_LENGTH = 250

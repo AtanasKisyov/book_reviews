@@ -1,9 +1,12 @@
-from django.contrib.auth import views as auth_views
+from django.contrib.auth import views as auth_views, get_user_model
 from django.urls import reverse_lazy, reverse
 from django.views import generic as generic_views
 from book_reviews.auth_user import forms as custom_forms
 from book_reviews.auth_user.forms import ChangePasswordForm
 from book_reviews.auth_user.models import Profile, AuthUser
+
+
+UserModel = get_user_model()
 
 
 class RegisterUserView(generic_views.CreateView):
@@ -50,7 +53,7 @@ class EditUserView(generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Profile'
     model = Profile
     template_name = 'user/edit_user.html'
-    fields = ('picture', 'first_name', 'last_name')
+    fields = ('picture', 'username' 'first_name', 'last_name')
     success_url = reverse_lazy('home')
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -66,7 +69,8 @@ class DeleteUserView(generic_views.DeleteView):
 
 
 class ChangePasswordView(generic_views.UpdateView):
-    model = AuthUser
+    TEMPLATE_NAME = 'Change Password'
+    model = UserModel
     form_class = ChangePasswordForm
     fields = '__all__'
     template_name = 'user/change_password.html'
@@ -83,3 +87,8 @@ class ChangePasswordView(generic_views.UpdateView):
         kwargs['user'] = self.request.user
         kwargs.pop('instance')
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['template_name'] = self.TEMPLATE_NAME
+        return context
