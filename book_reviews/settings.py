@@ -9,7 +9,7 @@ DEBUG = bool(os.environ.get('DEBUG'))
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'django-book-review-project.herokuapp'
+    'django-book-review-project.herokuapp.com'
 ]
 
 INSTALLED_APPS = [
