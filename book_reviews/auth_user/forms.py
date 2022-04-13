@@ -19,6 +19,8 @@ class RegisterUserForm(auth_forms.UserCreationForm):
     def save(self, commit=True):
         user = UserModel(
             email=self.cleaned_data['email'],
+            first_name=self.cleaned_data['first_name'],
+            last_name=self.cleaned_data['last_name'],
         )
         user.set_password(self.cleaned_data['password1'])
         user.save()

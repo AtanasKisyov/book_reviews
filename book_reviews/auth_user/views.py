@@ -74,13 +74,10 @@ class ChangePasswordView(generic_views.UpdateView):
     form_class = ChangePasswordForm
     fields = '__all__'
     template_name = 'user/change_password.html'
+    success_url = reverse_lazy('login')
 
     def get_form_class(self):
         return self.form_class
-
-    def get_success_url(self):
-        kwargs = {'pk': self.request.user.id}
-        return reverse('detail_user', kwargs=kwargs)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

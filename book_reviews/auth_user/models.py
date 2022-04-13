@@ -16,18 +16,12 @@ class AuthUser(auth_models.AbstractUser, auth_models.PermissionsMixin):
     date_joined = models.DateField(auto_now_add=True)
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
-        null=True,
-        blank=True,
     )
     last_name = models.CharField(
         max_length=LAST_NAME_MAX_LENGTH,
-        null=True,
-        blank=True,
     )
     username = models.CharField(
         max_length=USERNAME_MAX_LENGTH,
-        null=True,
-        blank=True,
     )
 
     USERNAME_FIELD = 'email'

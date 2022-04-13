@@ -5,9 +5,10 @@ from django.views import generic as generic_views
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.forms import CreateCommentForm, EditCommentForm
 from book_reviews.review.models import Comment, Review
+from book_reviews.review.views.review import CustomLoginRequiredMixin
 
 
-class AddCommentView(generic_views.CreateView):
+class AddCommentView(CustomLoginRequiredMixin, generic_views.CreateView):
     TEMPLATE_NAME = 'Add Comment'
     form_class = CreateCommentForm
     template_name = 'comment/comment_add.html'
@@ -34,7 +35,7 @@ class AddCommentView(generic_views.CreateView):
         return redirect(url)
 
 
-class EditCommentView(generic_views.UpdateView):
+class EditCommentView(CustomLoginRequiredMixin, generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Comment'
     model = Comment
     form_class = EditCommentForm
@@ -51,7 +52,7 @@ class EditCommentView(generic_views.UpdateView):
         return reverse('details_review', kwargs=kwargs)
 
 
-class DeleteCommentView(generic_views.DeleteView):
+class DeleteCommentView(CustomLoginRequiredMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Comment'
     model = Comment
     template_name = 'comment/comment_delete.html'
