@@ -53,8 +53,8 @@ class EditUserView(generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Profile'
     model = Profile
     template_name = 'user/edit_user.html'
-    fields = ('picture', 'email' 'first_name', 'last_name')
     success_url = reverse_lazy('home')
+    fields = ('picture', 'first_name', 'last_name')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

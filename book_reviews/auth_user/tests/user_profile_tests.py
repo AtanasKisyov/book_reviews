@@ -35,7 +35,7 @@ class UserProfileTest(CreateTestDataMixin):
         user = UserModel.objects.first()
 
         expected = self.valid_register_user_data['email']
-        actual = user.username
+        actual = user.email
         self.assertEqual(expected, actual)
         self.assertFalse(user.is_staff)
 

@@ -1,11 +1,12 @@
 from django.contrib.auth import models as auth_models, get_user_model
+from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from book_reviews.auth_user import managers as custom_manager
 
 
-class AuthUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
+class AuthUser(auth_models.AbstractUser, auth_models.PermissionsMixin):
 
     USERNAME_MAX_LENGTH = 15
     FIRST_NAME_MAX_LENGTH = 15
