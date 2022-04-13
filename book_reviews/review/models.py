@@ -84,3 +84,6 @@ class Comment(models.Model):
             raise ValidationError('Your comment cannot be empty text!')
         super().save()
         return self
+
+    def __str__(self):
+        return f'Commented by: {self.commented_by}, Commented on: {self.review}'

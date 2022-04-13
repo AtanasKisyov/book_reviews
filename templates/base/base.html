@@ -25,6 +25,7 @@
             {% endif %}
             <li class="right nav_li"><a href="{% url 'logout' %}">Logout</a></li>
             <li class="right nav_li"><a href="{% url 'detail_user' user_profile.id %}">Profile</a></li>
+            <li class="right nav li"><p class="banner-text"></p><img src="{{ user_profile.picture.url }}" alt="" width="30" height="30"></li>
             <li class="right nav li"><p class="banner-text">Hello, {{ user_profile.first_name }}</p></li>
         {% else %}
             <li class="right nav_li"><a href="{% url 'login' %}">Login</a></li>

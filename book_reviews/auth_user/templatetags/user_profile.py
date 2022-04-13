@@ -15,5 +15,6 @@ def user_profile(context):
             'first_name': profile.first_name,
             'last_name': profile.last_name,
             'id': profile.user_id,
+            'picture': profile.picture,
         }
     return None

@@ -9,3 +9,4 @@ book_reviews/review/__pycache__/
 book_reviews/review/migrations/__pycache__/
 book_reviews/auth_user/__pycache__/
 *__pycache__*
+staticfiles

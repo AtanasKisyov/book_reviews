@@ -4,6 +4,7 @@
     <div class="form_div">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.picture }}
             <label>First Name:</label>
             {{ form.first_name }}
             <label>Last Name</label>
