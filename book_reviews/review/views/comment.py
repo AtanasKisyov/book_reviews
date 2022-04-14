@@ -4,7 +4,7 @@ from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.forms import CreateCommentForm, EditCommentForm
-from book_reviews.review.helpers import is_review_owner, is_comment_owner
+from book_reviews.review.helpers import is_comment_owner
 from book_reviews.review.models import Comment, Review
 from book_reviews.review.views.review import CustomLoginRequiredMixin
 

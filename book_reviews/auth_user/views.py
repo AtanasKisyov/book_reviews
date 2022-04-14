@@ -1,5 +1,6 @@
 from django.contrib.auth import views as auth_views, get_user_model
-from django.urls import reverse_lazy, reverse
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.views import generic as generic_views
 from book_reviews.auth_user import forms as custom_forms
 from book_reviews.auth_user.forms import ChangePasswordForm
@@ -7,6 +8,14 @@ from book_reviews.auth_user.models import Profile, AuthUser
 
 
 UserModel = get_user_model()
+
+
+class CustomPermissionMixin(generic_views.View):
+    def dispatch(self, request, *args, **kwargs):
+        user = UserModel.objects.get(pk=kwargs['pk'])
+        if request.user != user:
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class RegisterUserView(generic_views.CreateView):
@@ -35,7 +44,7 @@ class LogoutUserView(auth_views.LogoutView):
         return reverse_lazy('home')
 
 
-class DetailUserView(generic_views.DetailView):
+class DetailUserView(CustomPermissionMixin, generic_views.DetailView):
     TEMPLATE_NAME = 'Profile Details'
     model = Profile
     template_name = 'user/user_details.html'
@@ -49,7 +58,7 @@ class DetailUserView(generic_views.DetailView):
         return context
 
 
-class EditUserView(generic_views.UpdateView):
+class EditUserView(CustomPermissionMixin, generic_views.UpdateView):
     TEMPLATE_NAME = 'Edit Profile'
     model = Profile
     template_name = 'user/edit_user.html'
@@ -62,7 +71,7 @@ class EditUserView(generic_views.UpdateView):
         return context
 
 
-class DeleteUserView(generic_views.DeleteView):
+class DeleteUserView(CustomPermissionMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Profile'
     model = AuthUser
     template_name = 'user/delete_user.html'
@@ -74,7 +83,7 @@ class DeleteUserView(generic_views.DeleteView):
         return context
 
 
-class ChangePasswordView(generic_views.UpdateView):
+class ChangePasswordView(CustomPermissionMixin, generic_views.UpdateView):
     TEMPLATE_NAME = 'Change Password'
     model = UserModel
     form_class = ChangePasswordForm
