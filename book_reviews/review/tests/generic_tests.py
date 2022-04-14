@@ -31,8 +31,8 @@ class GenericViewsTest(CreateTestDataMixin):
         actual = response.context_data['template_name']
         self.assertEqual(expected, actual)
 
-    def test_approve_reviews_view_shows_correct_template_name(self):
+    def test_approve_reviews_view_shows_correct_status_code(self):
         response = self.client.get(self.APPROVE_REVIEWS_URL)
-        expected = ApproveReviewView.TEMPLATE_NAME
-        actual = response.context_data['template_name']
+        expected = 302
+        actual = response.status_code
         self.assertEqual(expected, actual)

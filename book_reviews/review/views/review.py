@@ -5,6 +5,7 @@ from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.forms import CreateBookReviewForm, EditBookReviewForm, ApproveBookReviewForm
+from book_reviews.review.helpers import is_review_owner
 from book_reviews.review.models import Review, Comment
 
 
@@ -78,6 +79,12 @@ class EditReviewView(CustomLoginRequiredMixin, generic_views.UpdateView):
         context['template_name'] = self.TEMPLATE_NAME
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        review = Review.objects.get(pk=kwargs['pk'])
+        if not is_review_owner(self.request.user, review):
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)
+
 
 class DeleteReviewView(CustomLoginRequiredMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Review'
@@ -89,3 +96,9 @@ class DeleteReviewView(CustomLoginRequiredMixin, generic_views.DeleteView):
         context = super().get_context_data(**kwargs)
         context['template_name'] = self.TEMPLATE_NAME
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        review = Review.objects.get(pk=kwargs['pk'])
+        if not is_review_owner(self.request.user, review):
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)

@@ -1,7 +1,16 @@
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.models import Review
+
+
+def unauthorized(request):
+    context = {
+        'template_name': '401 (Unauthorized)'
+    }
+    return render(request, context=context, template_name='generic/401.html')
 
 
 class HomeView(generic_views.ListView):
@@ -54,3 +63,8 @@ class ApproveReviewView(generic_views.ListView):
         context['template_name'] = self.TEMPLATE_NAME
         context['object_list'] = Review.objects.filter(is_approved=Review.WAITING_FOR_APPROVAL)
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff or not request.user.is_superuser:
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)

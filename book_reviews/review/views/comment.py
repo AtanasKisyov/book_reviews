@@ -4,6 +4,7 @@ from django.views import generic as generic_views
 
 from book_reviews.auth_user.models import Profile
 from book_reviews.review.forms import CreateCommentForm, EditCommentForm
+from book_reviews.review.helpers import is_review_owner, is_comment_owner
 from book_reviews.review.models import Comment, Review
 from book_reviews.review.views.review import CustomLoginRequiredMixin
 
@@ -51,6 +52,12 @@ class EditCommentView(CustomLoginRequiredMixin, generic_views.UpdateView):
         kwargs = {'pk': object_id}
         return reverse('details_review', kwargs=kwargs)
 
+    def dispatch(self, request, *args, **kwargs):
+        comment = Comment.objects.get(pk=kwargs['pk'])
+        if not is_comment_owner(self.request.user, comment):
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)
+
 
 class DeleteCommentView(CustomLoginRequiredMixin, generic_views.DeleteView):
     TEMPLATE_NAME = 'Delete Comment'
@@ -66,3 +73,9 @@ class DeleteCommentView(CustomLoginRequiredMixin, generic_views.DeleteView):
         context = super().get_context_data(**kwargs)
         context['template_name'] = self.TEMPLATE_NAME
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        comment = Comment.objects.get(pk=kwargs['pk'])
+        if not is_comment_owner(self.request.user, comment):
+            return redirect('unauthorized')
+        return super().dispatch(request, *args, **kwargs)
