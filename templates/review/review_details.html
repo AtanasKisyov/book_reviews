@@ -7,8 +7,14 @@
         <p>{{ object.review }}</p>
 
         {% if is_owner %}
-            <a href="{% url 'edit_review' object.id %}">Edit</a>
-            <a href="{% url 'delete_review' object.id %}">Delete</a>
+            <div>
+                <a href="{% url 'edit_review' object.id %}">
+                    <button class="button">Edit</button>
+                </a>
+                <a href="{% url 'delete_review' object.id %}">
+                    <button class="button">Delete</button>
+                </a>
+            </div>
         {% endif %}
         {% if comments %}
             <h2>Comments:</h2>
@@ -17,19 +23,27 @@
                     <h3>{{ comment.commented_by }}</h3>
                     <p>{{ comment.content }}</p>
                     {% if profile == comment.commented_by %}
-                        <a class="button" href="{% url 'edit_comment' comment.id %}">Edit Comment</a>
-                        <a class="button" href="{% url 'delete_comment' comment.id %}">Delete Comment</a>
+                        <a href="{% url 'edit_comment' comment.id %}">
+                            <button class="button-comment">Edit Comment</button>
+                        </a>
+                        <a href="{% url 'delete_comment' comment.id %}">
+                            <button class="button-comment">Delete Comment</button>
+                        </a>
                     {% endif %}
                 </div>
             {% endfor %}
         {% endif %}
-        <a class="button" href="{% url 'review_comment' object.id %}">Add Comment</a>
+        <a href="{% url 'review_comment' object.id %}">
+            <button class="button">Add Comment</button>
+        </a>
         {% if request.user.is_superuser or request.user.is_staff %}
-            <form method="post">
-                {% csrf_token %}
-                {{ approval_button }}
-                <button>Save</button>
-            </form>
+            <div class="form_div">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ approval_button }}
+                    <button class="button">Save</button>
+                </form>
+            </div>
         {% endif %}
     </div>
 {% endblock %}

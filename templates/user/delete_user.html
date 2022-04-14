@@ -1,18 +1,13 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-        <h1 class="text-center">Are you sure you want to delete your profile ?</h1>
-    <div class="row">
-        <div class="col-lg-3"></div>
-        <div class="col-lg-6">
+        <div class="form_div">
+        <p>Are you sure you want to delete your profile ?</p>
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
 
-                <button class="btn btn-danger mt-2" type="submit">Yes, Delete!</button>
+                <button class="button" type="submit">Yes, Delete!</button>
             </form>
         </div>
-        <div class="col-lg-3"></div>
-        <a href="{% url 'home' %}">No, go to Home Page!</a>
-    </div>
 {% endblock %}

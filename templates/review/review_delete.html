@@ -1,14 +1,15 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <h1 class="text-center">Are you sure you want to delete your review ?</h1>
-        <div class="form_div">
-            <form method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit">Yes, Delete!</button>
-                <a class="button" href="{% url 'home' %}">No, go to Home Page!</a>
-            </form>
-        </div>
+
+    <div class="form_div">
+        <p>Are you sure you want to delete your review ?</p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button class="button" type="submit">Yes, Delete!</button>
+        </form>
+
+    </div>
 
 {% endblock %}

@@ -11,7 +11,7 @@
 
 .comment {
     list-style-type: none;
-    margin-top: 0;
+    margin: 0.5rem;
     overflow: hidden;
     background-color: lightgrey;
     color: black;
@@ -59,7 +59,7 @@ body {
     background-position: right 35% bottom 45%;
     box-sizing: border-box;
     border-radius: 15px;
-    height: 500px;
+    height: 570px;
     font-weight: bold;
     margin-bottom: 70px;
     margin-top: 20px;
@@ -92,23 +92,8 @@ body {
 }
 
 .button {
-    appearance: none;
-    -webkit-appearance: none;
-    padding: 10px;
-    border: none;
-    background-color: #3F51B5;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 5px;
-    width: 9%;
-    margin-top: 1rem;
-    transform: scale(1.05);
-}
-
-button {
-    appearance: none;
-    -webkit-appearance: none;
-    padding: 10px;
+    margin-top: 0.5rem;
+    padding: 5px;
     border: none;
     background-color: #3F51B5;
     color: #fff;
@@ -144,4 +129,20 @@ input, textarea, select {
 
 #picture-clear_id {
     display: none;
+}
+
+.detail-buttons {
+    display: inline-flex;
+}
+
+.button-comment {
+    margin: 0.5rem;
+    padding: 5px;
+    border: none;
+    background-color: #3F51B5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 10%;
+    transform: scale(1.05);
 }

@@ -1,13 +1,21 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    <div>
+    <div class="form_div">
         <img src="{{ profile.picture.url }}" alt="" width="200" height="200">
-        <p>{{ object.first_name }}</p>
-        <p>{{ object.last_name }}</p>
-        <p>{{ object.user.email }}</p>
-        <a href="{% url 'edit_user' object.user.id %}">Edit</a>
-        <a href="{% url 'delete_user' object.user.id %}">Delete</a>
-        <a href="{% url 'change_password' object.user.id %}">Change Password</a>
+        <p>First Name: {{ object.first_name }}</p>
+        <p>Last Name: {{ object.last_name }}</p>
+        <p>Email: {{ object.user.email }}</p>
+        <div>
+            <a href="{% url 'edit_user' object.user.id %}">
+                <button class="button">Edit</button>
+            </a>
+            <a class="anchor" href="{% url 'delete_user' object.user.id %}">
+                <button class="button">Delete</button>
+            </a>
+            <a class="anchor" href="{% url 'change_password' object.user.id %}">
+                <button class="button">Change Password</button>
+            </a>
+        </div>
     </div>
 {% endblock %}

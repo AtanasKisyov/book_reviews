@@ -20,7 +20,7 @@
         {% if request.user.is_authenticated %}
             <li class="nav_li"><a href="{% url 'user_reviews' %}">My Reviews</a></li>
             <li class="nav_li"><a href="{% url 'create_review' %}">Add Review</a></li>
-            {% if request.user.is_superuser or request.user.is_staff %}
+            {% if request.user|has_group:"Staff" or request.user|has_group:"Administrator" %}
                 <li class="nav_li"><a href="{% url 'approve_review' %}">Approve Reviews</a></li>
             {% endif %}
             <li class="right nav_li"><a href="{% url 'logout' %}">Logout</a></li>
