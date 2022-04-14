@@ -63,9 +63,15 @@ class EditUserView(generic_views.UpdateView):
 
 
 class DeleteUserView(generic_views.DeleteView):
+    TEMPLATE_NAME = 'Delete Profile'
     model = AuthUser
     template_name = 'user/delete_user.html'
     success_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['template_name'] = self.TEMPLATE_NAME
+        return context
 
 
 class ChangePasswordView(generic_views.UpdateView):

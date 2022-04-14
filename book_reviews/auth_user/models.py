@@ -22,6 +22,8 @@ class AuthUser(auth_models.AbstractUser, auth_models.PermissionsMixin):
     )
     username = models.CharField(
         max_length=USERNAME_MAX_LENGTH,
+        null=True,
+        blank=True,
     )
 
     USERNAME_FIELD = 'email'
