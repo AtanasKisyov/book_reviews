@@ -12,3 +12,6 @@ urlpatterns = [
     path('ratings/', include('star_ratings.urls', namespace='ratings')),
     path('unauthorized', unauthorized, name='unauthorized'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'book_reviews.review.views.generic.handler404'
+handler500 = 'book_reviews.review.views.generic.handler500'
