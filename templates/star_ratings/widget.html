@@ -24,7 +24,7 @@
             {% csrf_token %}
             <input type="hidden" value="1" name="clear">
             <input type="hidden" value="{{ request.path }}" name="next">
-            <button type="submit" class="star-ratings-rating-clear">Remove Review</button>
+            <button class="button" type="submit" class="star-ratings-rating-clear">Remove Review</button>
         </form>
     </div>
 {% endblock %}
