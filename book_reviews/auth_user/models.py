@@ -1,9 +1,9 @@
+import os
+
 from django.contrib.auth import models as auth_models, get_user_model
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
-
-from cloudinary import models as cloudinary_models
 
 from book_reviews.auth_user import managers as custom_manager
 
@@ -35,11 +35,15 @@ class AuthUser(auth_models.AbstractUser, auth_models.PermissionsMixin):
 
 
 class Profile(models.Model):
-
+    DEFAULT_PROFILE_PICTURE = os.getenv('DEFAULT_PROFILE_PICTURE')
     FIRST_NAME_MAX_LENGTH = 15
     LAST_NAME_MAX_LENGTH = 15
 
-    picture = cloudinary_models.CloudinaryField('image')
+    picture = models.URLField(
+        default=DEFAULT_PROFILE_PICTURE,
+        null=True,
+        blank=True,
+    )
 
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,

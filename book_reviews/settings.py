@@ -1,7 +1,4 @@
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +22,6 @@ INSTALLED_APPS = [
     'book_reviews.auth_user',
     'book_reviews.review',
     'star_ratings',
-    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -134,13 +130,3 @@ AUTH_USER_MODEL = 'auth_user.AuthUser'
 STAR_RATINGS_RERATE_SAME_DELETE = True
 
 STAR_RATINGS_CLEARABLE = True
-
-CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
-
-
-cloudinary.config(
-    cloud_name=os.getenv('CLOUDINARY_CLOUD_NAME', None),
-    api_key=os.getenv('CLOUDINARY_API_KEY', None),
-    api_secret=os.getenv('CLOUDINARY_API_SECRET', None),
-    secure=True,
-)

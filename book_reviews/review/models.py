@@ -39,11 +39,9 @@ class Review(models.Model):
         max_length=TITLE_MAX_LENGTH,
         validators=(MinLengthValidator(1),),
     )
-    cover = models.ImageField(
-        upload_to='review/',
+    cover = models.URLField(
         null=True,
         blank=True,
-        default='review/default_review_cover.jpg'
     )
     review = models.TextField()
     reviewed_by = models.ForeignKey(
