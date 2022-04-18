@@ -19,7 +19,7 @@
         <ul class="list">
             {% for element in object_list %}
                 <a class="review-card container" href="{% url 'details_review' element.id %}">
-                    <img class="image" src="{{ element.cover.url }}" alt="" width="200" height="200">
+                    <img class="image" src="{{ element.cover }}" alt="" width="200" height="200">
                     <p>Title: {{ element.title }}</p>
                     <p>Category: {{ element.category }}</p>
                     <p>Reviewed By: {{ element.reviewed_by }}</p>

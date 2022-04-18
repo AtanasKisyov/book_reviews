@@ -100,7 +100,6 @@ body {
     font-weight: 600;
     border-radius: 5px;
     width: 100%;
-    transform: scale(1.05);
 }
 
 input, textarea, select {
@@ -144,5 +143,4 @@ input, textarea, select {
     font-weight: 600;
     border-radius: 5px;
     width: 10%;
-    transform: scale(1.05);
 }
