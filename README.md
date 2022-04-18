@@ -6,4 +6,4 @@ Staff users can approve book reviews.
 
 Administrators have full control of the application.
 
-Deployment is coming soon!
+Deployed to Heroku: https://book-reviews-django.herokuapp.com/
