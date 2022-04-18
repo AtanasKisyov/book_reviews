@@ -17,7 +17,7 @@
             {% endif %}
         </span>
         <ul class="list">
-            {% for element in object_list %}
+            {% for element in page_obj.object_list %}
                 <a class="review-card container" href="{% url 'details_review' element.id %}">
                     <img class="image" src="{{ element.cover }}" alt="" width="200" height="200">
                     <p>Title: {{ element.title }}</p>
