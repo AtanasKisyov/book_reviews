@@ -56,6 +56,7 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'DATABASE_URL': os.environ.get('DATABASE_URL', None),
         'NAME': os.environ.get('DATABASE', 'postgres'),
         'USER': os.environ.get('DB_USER', 'postgres'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
@@ -63,9 +64,6 @@ DATABASES = {
         'PORT': os.environ.get('DB_PORT', '5432'),
     }
 }
-
-DATABASE_URL = os.environ.get('DATABASE_URL', None)
-
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 LOGGING_LEVEL = 'INFO'
