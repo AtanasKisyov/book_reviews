@@ -64,6 +64,8 @@ DATABASES = {
     }
 }
 
+DATABASE_URL = os.environ.get('DATABASE_URL', None)
+
 WSGI_APPLICATION = 'book_reviews.wsgi.application'
 
 LOGGING_LEVEL = 'INFO'
