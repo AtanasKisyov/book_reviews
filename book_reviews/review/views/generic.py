@@ -32,7 +32,7 @@ class HomeView(generic_views.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['template_name'] = self.TEMPLATE_NAME
-        context['recently_added'] = Review.objects.filter(is_approved=Review.APPROVED).order_by('-reviewed_on')[:10]
+        context['recently_added'] = Review.objects.filter(is_approved=Review.APPROVED).order_by('-reviewed_on')[:3]
         return context
 
 
